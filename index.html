@@ -1376,6 +1376,232 @@ body.kid-mode .kid-mode-banner { display: block; }
   margin-left: 0.3rem;
 }
 
+
+/* ─── FEATURED STORY CARD ─── */
+.featured-story-card {
+  background: var(--ink);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 0;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.22s;
+  position: relative;
+}
+.featured-story-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+  border-color: var(--gold-light);
+}
+.featured-badge {
+  background: var(--gold);
+  color: white;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.35rem 1rem;
+  text-align: center;
+}
+.featured-story-inner {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+.featured-illus {
+  width: 180px;
+  flex-shrink: 0;
+}
+.featured-illus svg { width: 100%; height: 100%; display: block; }
+.featured-story-text {
+  padding: 1.2rem 1.3rem;
+  flex: 1;
+}
+.featured-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+.featured-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--parchment);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+.featured-desc {
+  font-size: 0.92rem;
+  color: var(--parchment-dark);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 0.7rem;
+}
+.featured-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+@media (max-width: 500px) {
+  .featured-story-inner { flex-direction: column; }
+  .featured-illus { width: 100%; height: 80px; }
+}
+
+/* ─── WORKBOOK PAGE SELECTOR ─── */
+.workbook-page-selector {
+  background: var(--parchment);
+  border: 1px solid var(--parchment-dark);
+  border-left: 4px solid var(--rust);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1.5rem;
+}
+.wps-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+.wps-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.wps-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border: 2px solid var(--parchment-dark);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.18s;
+  min-height: var(--tap-min);
+  user-select: none;
+}
+.wps-option:hover { border-color: var(--gold); background: #fffdf5; }
+.wps-option input { width: 17px; height: 17px; cursor: pointer; accent-color: var(--gold); }
+.wps-hint {
+  font-size: 0.82rem;
+  color: #7a6040;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ─── IN-STORY VISUAL CUES ─── */
+.story-text-block { margin-bottom: 0.5rem; }
+.story-para { margin-bottom: 1rem; font-size: 1.15rem; line-height: 1.9; color: #1e1407; }
+.story-section-divider {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.2rem;
+  letter-spacing: 0.5rem;
+  margin: 1.2rem 0;
+  opacity: 0.6;
+}
+.talk-questions { margin-top: 0.4rem; }
+.talk-q {
+  padding: 0.6rem 0.8rem;
+  background: white;
+  border-radius: var(--radius);
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-left: 3px solid var(--rust);
+}
+.story-complete-cue {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem 1.2rem;
+  background: var(--forest);
+  color: white;
+  border-radius: var(--radius);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+}
+.story-complete-stars { letter-spacing: 0.1rem; }
+
+/* ─── HOW IT WORKS SECTION ─── */
+.how-it-works-section {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 3rem 1.5rem;
+  display: none;
+}
+.how-it-works-section.visible { display: block; }
+.hiw-inner { max-width: 900px; margin: 0 auto; }
+.hiw-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+.hiw-sub {
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--parchment-dark);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+.hiw-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hiw-step {
+  text-align: center;
+  flex: 1;
+  min-width: 160px;
+  max-width: 200px;
+  padding: 0 0.8rem;
+  position: relative;
+}
+.hiw-step-icon { font-size: 2.4rem; margin-bottom: 0.4rem; }
+.hiw-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  background: var(--gold);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.hiw-step h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--parchment);
+  margin-bottom: 0.4rem;
+}
+.hiw-step p {
+  font-size: 0.85rem;
+  color: var(--parchment-dark);
+  line-height: 1.55;
+}
+.hiw-step-arrow {
+  font-size: 1.5rem;
+  color: var(--gold);
+  opacity: 0.4;
+  padding-top: 2.5rem;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .hiw-step-arrow { display: none; }
+  .hiw-step { min-width: 130px; }
+}
+
 </style>
 
 </head>
@@ -1443,10 +1669,10 @@ body.kid-mode .kid-mode-banner { display: block; }
     </div>
   </div>
   <div class="nav-tabs">
-    <div class="nav-tab active" onclick="showPage('stories')">📖 Story Library</div>
+    <div class="nav-tab active" onclick="showPage('stories')">📖 Stories</div>
     <div class="nav-tab" onclick="showPage('curriculum')">📅 Curriculum</div>
-    <div class="nav-tab" onclick="showPage('workbooks')">🖨 Workbooks</div>
     <div class="nav-tab" onclick="showPage('pricing')" style="color:var(--gold-light)">⭐ Full Access</div>
+    <div class="nav-tab" onclick="showPage('workbooks')">🖨 Workbooks</div>
   <button onclick="toggleKidMode()" id="kid-mode-btn" style="background:none;border:2px solid transparent;color:#7a6040;cursor:pointer;font-size:0.8rem;padding:0.3rem 0.7rem;min-height:36px;border-radius:20px;font-family:'Crimson Pro',serif;letter-spacing:0.03em;transition:all 0.2s" title="Kid Mode">🧒 Kid Mode</button>
 <button onclick="openSettings()" style="background:none;border:none;color:#7a6040;cursor:pointer;font-size:1.2rem;padding:0.5rem;min-width:40px;min-height:40px" title="Settings" aria-label="Settings">⚙️</button>
   </div>
@@ -1587,7 +1813,7 @@ body.kid-mode .kid-mode-banner { display: block; }
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item"><span class="trust-icon">🛡️</span> No ads. Ever.</div>
-  <div class="trust-item"><span class="trust-icon">👶</span> Child-safe content</div>
+  <div class="trust-item"><span class="trust-icon">🛡️</span> <strong>Safe for Kids</strong> — no tracking, no ads</div>
   <div class="trust-item"><span class="trust-icon">📵</span> Works offline</div>
   <div class="trust-item"><span class="trust-icon">✝️</span> Biblically grounded</div>
   <div class="trust-item"><span class="trust-icon">❌</span> Cancel anytime</div>
@@ -1621,7 +1847,7 @@ body.kid-mode .kid-mode-banner { display: block; }
 
 
 <!-- HOW IT WORKS -->
-<div class="how-it-works-section" id="how-it-works">
+<div class="how-it-works-section visible" id="how-it-works">
   <div class="hiw-inner">
     <h2 class="hiw-title">How Story Time Works</h2>
     <p class="hiw-sub">Four simple steps. Five minutes. A memory that lasts.</p>
@@ -1701,12 +1927,45 @@ body.kid-mode .kid-mode-banner { display: block; }
 
   <div class="story-filters" id="story-filters">
     <button class="filter-btn active" onclick="filterStories('all', this)">✦ All Stories</button>
-    <button class="filter-btn" onclick="filterStories('OT-Creation', this)">🌍 Creation</button>
-    <button class="filter-btn" onclick="filterStories('OT-Patriarchs', this)">👴 Patriarchs</button>
-    <button class="filter-btn" onclick="filterStories('OT-Moses', this)">🔥 Moses</button>
-    <button class="filter-btn" onclick="filterStories('OT-Kings', this)">👑 Kings</button>
-    <button class="filter-btn" onclick="filterStories('NT', this)">✝ Jesus</button>
-    <button class="filter-btn" onclick="filterStories('character', this)">💪 Character</button>
+    <button class="filter-btn" onclick="filterStories('OT-Creation', this)">🌍 How It All Began</button>
+    <button class="filter-btn" onclick="filterStories('OT-Patriarchs', this)">👨‍👩‍👧 Faith &amp; Family</button>
+    <button class="filter-btn" onclick="filterStories('OT-Moses', this)">🔥 Moses: God's Leader</button>
+    <button class="filter-btn" onclick="filterStories('OT-Kings', this)">👑 Kings &amp; Courage</button>
+    <button class="filter-btn" onclick="filterStories('NT', this)">✝ Jesus &amp; His Friends</button>
+    <button class="filter-btn" onclick="filterStories('character', this)">💪 Growing Strong</button>
+  </div>
+
+  <!-- FEATURED STORY -->
+  <div class="featured-story-card" id="featured-story-card" onclick="openStory(1)">
+    <div class="featured-badge">⭐ Start Here — Recommended First Story</div>
+    <div class="featured-story-inner">
+      <div class="featured-illus">
+        <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="70" fill="#1a3a4a" rx="8"/>
+          <circle cx="75" cy="18" r="10" fill="#f5d76e" opacity="0.95"/>
+          <circle cx="75" cy="18" r="15" fill="none" stroke="#f5d76e" stroke-width="1.5" opacity="0.25"/>
+          <circle cx="18" cy="14" r="3" fill="white" opacity="0.5"/>
+          <circle cx="38" cy="9" r="2" fill="white" opacity="0.4"/>
+          <circle cx="55" cy="20" r="1.5" fill="white" opacity="0.3"/>
+          <ellipse cx="50" cy="58" rx="38" ry="11" fill="#2d6a3f"/>
+          <ellipse cx="50" cy="53" rx="28" ry="9" fill="#3a8a52"/>
+          <rect x="44" y="33" width="12" height="24" fill="#5a3a1a" rx="3"/>
+          <ellipse cx="50" cy="30" rx="16" ry="13" fill="#3a8a52"/>
+          <ellipse cx="42" cy="26" rx="8" ry="6" fill="#4a9a62" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="featured-story-text">
+        <div class="featured-meta">Month 1 · Ages 4–7 · 🆓 Free</div>
+        <h3 class="featured-title">God Creates the World</h3>
+        <p class="featured-desc">In the very beginning, there was nothing — no sun, no stars, no ground to stand on. But God was there. And God spoke...</p>
+        <div class="featured-tags">
+          <span class="pill">Creation &amp; Identity</span>
+          <span class="pill">~6 minutes</span>
+          <span class="pill">Discussion questions included</span>
+        </div>
+        <button class="btn-card-read" style="margin-top:0.9rem;font-size:1rem;padding:0.65rem 1.4rem" onclick="event.stopPropagation();openStory(1)">📖 Read This Story →</button>
+      </div>
+    </div>
   </div>
 
   <div class="stories-grid" id="stories-grid"></div>
@@ -1733,7 +1992,30 @@ body.kid-mode .kid-mode-banner { display: block; }
 
   <div class="workbook-intro">
     <strong style="font-family:'Playfair Display',serif;font-size:1.1rem;">How it works:</strong>
-    Select a story from the library, then choose the activities you'd like to print. Each workbook is automatically personalised to match the story, characters and lesson.
+    Select a story from the library, choose which pages you want, then print. Every page is personalised to match the story, characters and lesson.
+  </div>
+
+  <!-- PAGE SELECTOR -->
+  <div class="workbook-page-selector">
+    <div class="wps-label">📄 Choose what to include in your pack:</div>
+    <div class="wps-options">
+      <label class="wps-option">
+        <input type="checkbox" checked id="wps-coloring"> 🎨 Colouring Page
+      </label>
+      <label class="wps-option">
+        <input type="checkbox" checked id="wps-fillblank"> ✏️ Fill-in-the-Blank
+      </label>
+      <label class="wps-option">
+        <input type="checkbox" checked id="wps-wordsearch"> 🔍 Word Search
+      </label>
+      <label class="wps-option">
+        <input type="checkbox" checked id="wps-journal"> 📝 Reflection Journal
+      </label>
+      <label class="wps-option">
+        <input type="checkbox" checked id="wps-versecard"> ✂️ Memory Verse Card
+      </label>
+    </div>
+    <p class="wps-hint">💡 Tip: Print just the Colouring Page for a quick activity, or the full pack for a complete story session.</p>
   </div>
 
   <div class="workbook-grid">
@@ -1967,7 +2249,7 @@ body.kid-mode .kid-mode-banner { display: block; }
     </div>
     <div class="modal-actions">
       <button class="btn btn-primary" onclick="window.print()">🖨 Print Workbook</button>
-      <button class="btn btn-secondary" onclick="regenerateWorkbook()">🔄 Regenerate</button>
+      <button class="btn btn-secondary" onclick="regenerateWorkbook()">🔄 New Version</button>
     </div>
     <div class="modal-body" id="wb-modal-body">
       <div class="story-content loading">
