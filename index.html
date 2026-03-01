@@ -1696,6 +1696,182 @@ body.kid-mode .kid-mode-banner { display: block; }
   border-color: var(--gold);
 }
 
+
+/* ─── STICKY MOBILE CTA ─── */
+.sticky-mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 70px; /* above mobile nav */
+  left: 0; right: 0;
+  background: var(--ink);
+  border-top: 2px solid var(--gold);
+  padding: 0.6rem 1rem;
+  z-index: 500;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  animation: slide-up-cta 0.4s ease;
+}
+@keyframes slide-up-cta {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.sticky-btn-primary {
+  flex: 1;
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.18s;
+}
+.sticky-btn-primary:active { background: var(--gold-light); }
+.sticky-btn-secondary {
+  flex: 1;
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  min-height: 48px;
+  transition: all 0.18s;
+}
+.sticky-btn-secondary:active { background: rgba(184,137,42,0.15); }
+.sticky-cta-close {
+  background: none;
+  border: none;
+  color: #5a4a2a;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-width: 32px;
+  min-height: 48px;
+}
+@media (min-width: 640px) {
+  .sticky-mobile-cta { display: none !important; } /* desktop only shows hero CTAs */
+}
+
+/* ─── AUDIO WAVEFORM ─── */
+.audio-playing-bar {
+  width: 100%;
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  background: rgba(26,18,9,0.5);
+  border-radius: 8px;
+  border: 1px solid #3a2a18;
+}
+.audio-waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.wave-bar {
+  display: block;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.1s;
+}
+.audio-waveform.playing .wave-bar:nth-child(1) { animation: wave 0.8s ease-in-out infinite; }
+.audio-waveform.playing .wave-bar:nth-child(2) { animation: wave 0.8s ease-in-out 0.15s infinite; }
+.audio-waveform.playing .wave-bar:nth-child(3) { animation: wave 0.8s ease-in-out 0.3s infinite; }
+.audio-waveform.playing .wave-bar:nth-child(4) { animation: wave 0.8s ease-in-out 0.45s infinite; }
+.audio-waveform.playing .wave-bar:nth-child(5) { animation: wave 0.8s ease-in-out 0.6s infinite; }
+@keyframes wave {
+  0%, 100% { height: 3px; }
+  50%       { height: 16px; }
+}
+.audio-progress-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.audio-progress-track {
+  flex: 1;
+  height: 4px;
+  background: #3a2a18;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.audio-progress-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.25s linear;
+}
+.audio-time {
+  font-size: 0.72rem;
+  color: #7a6040;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+/* ─── AUTOPLAY + AMBIENT TOGGLES ─── */
+.autoplay-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.autoplay-toggle:hover { background: rgba(184,137,42,0.08); }
+
+/* ─── STAR POP ANIMATION ─── */
+.complete-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+.complete-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+.star-pop-wrap {
+  display: inline-flex;
+  gap: 0.1rem;
+}
+.star-pop {
+  display: inline-block;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: scale(0.3) translateY(10px);
+}
+.star-pop-wrap.active .star-pop {
+  animation: star-burst 0.6s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+}
+.star-pop-wrap.active .star-pop:nth-child(2) { animation-delay: 0.15s; }
+.star-pop-wrap.active .star-pop:nth-child(3) { animation-delay: 0.3s; }
+@keyframes star-burst {
+  0%   { opacity: 0; transform: scale(0.3) translateY(10px); }
+  60%  { opacity: 1; transform: scale(1.3) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 </style>
 
 </head>
@@ -1838,6 +2014,17 @@ body.kid-mode .kid-mode-banner { display: block; }
     <span class="guide-text">Tap any story to begin!</span>
     <button class="guide-dismiss" onclick="dismissGuide()">✕</button>
   </div>
+</div>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile-cta" id="sticky-mobile-cta">
+  <button class="sticky-btn-primary" onclick="showPage('stories');scrollTo(0,0);dismissStickyCta()">
+    📖 Start a Story
+  </button>
+  <button class="sticky-btn-secondary" onclick="showPage('pricing');scrollTo(0,0);dismissStickyCta()">
+    ⭐ See Plans
+  </button>
+  <button class="sticky-cta-close" onclick="dismissStickyCta()" aria-label="Dismiss">✕</button>
 </div>
 
 <!-- TOAST -->
@@ -2410,6 +2597,10 @@ body.kid-mode .kid-mode-banner { display: block; }
     </div>
     <div class="modal-narration-bar">
       <span class="narration-label">🎙 How would you like to read?</span>
+      <label class="autoplay-toggle" title="Auto-play audio when story loads">
+        <input type="checkbox" id="autoplay-toggle" onchange="saveAutoPlay(this.checked)" style="width:14px;height:14px;accent-color:var(--gold);cursor:pointer">
+        <span style="font-size:0.75rem;color:#7a6040">Auto-play</span>
+      </label>
       <button class="narration-btn active" id="btn-father-read" onclick="setNarration('father')">📖 Read Together</button>
       <button class="narration-btn" id="btn-ai-narrate" onclick="setNarration('ai')">🎧 Listen to Story</button>
       <button class="narration-btn" id="btn-play-pause" style="display:none" onclick="toggleNarration()">▶ Play</button>
@@ -2420,6 +2611,27 @@ body.kid-mode .kid-mode-banner { display: block; }
           <button class="speed-btn" onclick="setSpeed(0.75)" id="speed-075">🐢 Slow</button>
           <button class="speed-btn active" onclick="setSpeed(1.0)" id="speed-085">Normal</button>
           <button class="speed-btn" onclick="setSpeed(1.2)" id="speed-110">🐇 Fast</button>
+        </div>
+      </div>
+      <!-- Ambient sound toggle -->
+      <label class="autoplay-toggle" id="ambient-toggle-wrap" style="display:none" title="Soft background ambience while story plays">
+        <input type="checkbox" id="ambient-toggle" onchange="toggleAmbient(this.checked)" style="width:14px;height:14px;accent-color:var(--gold);cursor:pointer">
+        <span style="font-size:0.75rem;color:#7a6040">🎶 Soft ambience</span>
+      </label>
+      <!-- Audio waveform + progress — shown while playing -->
+      <div class="audio-playing-bar" id="audio-playing-bar" style="display:none">
+        <div class="audio-waveform" id="audio-waveform">
+          <span class="wave-bar"></span><span class="wave-bar"></span>
+          <span class="wave-bar"></span><span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+        </div>
+        <div class="audio-progress-wrap">
+          <div class="audio-progress-track">
+            <div class="audio-progress-fill" id="audio-progress-fill"></div>
+          </div>
+          <span class="audio-time" id="audio-time-current">0:00</span>
+          <span class="audio-time" style="color:#a08860"> / </span>
+          <span class="audio-time" id="audio-time-total">--:--</span>
         </div>
       </div>
     </div>
@@ -3231,6 +3443,13 @@ async function openStory(id) {
 
   // Set narration mode back to father read
   setNarration('father');
+  // Auto-play if user has enabled it
+  if (getAutoPlay()) {
+    setTimeout(() => {
+      setNarration('ai');
+      startNarration();
+    }, 800); // small delay to let story content render
+  }
 
   // Update Listen button to show free preview badge on story 1
   const listenBtn = document.getElementById('btn-ai-narrate');
@@ -3386,8 +3605,19 @@ function renderStoryContent(text) {
     </div>` : ''}
 
     <div class="story-complete-cue" id="story-complete-cue">
-      <span>📖</span> You made it to the end! <span class="story-complete-stars">⭐⭐⭐</span>
-      <button class="btn btn-gold" style="margin-left:0.8rem" onclick="markStoryDone()">✓ Mark as Read</button>
+      <div class="complete-top">
+        <span class="complete-book-icon">📖</span>
+        <span>You made it to the end!</span>
+        <div class="star-pop-wrap" id="star-pop-wrap">
+          <span class="star-pop">⭐</span>
+          <span class="star-pop" style="animation-delay:0.15s">⭐</span>
+          <span class="star-pop" style="animation-delay:0.3s">⭐</span>
+        </div>
+      </div>
+      <div class="complete-actions">
+        <button class="btn btn-gold" onclick="markStoryDone()">✓ Mark as Read</button>
+        <button class="btn btn-secondary" id="btn-next-story" onclick="openNextUnreadStory()" style="display:none">▶ Next Story →</button>
+      </div>
     </div>
   `;
   // Scroll to top of modal body
@@ -3438,6 +3668,8 @@ function setNarration(mode) {
     playBtn.style.display = 'inline-flex';
     stopBtn.style.display = 'inline-flex';
     if (speedWrap) speedWrap.style.display = 'flex';
+    const ambientWrap = document.getElementById('ambient-toggle-wrap');
+    if (ambientWrap) ambientWrap.style.display = 'inline-flex';
     // Show setup nudge if no key configured
     const activeKey = window._elKey || ELEVENLABS_API_KEY;
   if (!activeKey) {
@@ -3570,6 +3802,8 @@ async function startNarration() {
 
     updatePlayBtn('⏸ Pause');
     narrationLoading = false;
+    startAudioProgressTracking();
+    if (ambientOn) startAmbient();
 
   } catch (e) {
     narrationLoading = false;
@@ -3601,6 +3835,8 @@ function stopNarration() {
     audioPlayer = null;
   }
   updatePlayBtn('▶ Play');
+  stopAudioProgressTracking();
+  stopAmbient();
 }
 
 function updatePlayBtn(label, disabled = false) {
@@ -3935,6 +4171,8 @@ function updateProgressBar() {
 }
 
 function markStoryDone() {
+  triggerStarPop();
+  showNextStoryPrompt();
   if (!currentStory) return;
   const completed = getCompletedStories();
   if (!completed.includes(currentStory.id)) {
@@ -4086,6 +4324,182 @@ function playTick(freq = 440, duration = 0.08) {
   } catch(e) {}
 }
 
+
+// ─── AUDIO PROGRESS BAR ───────────────────────────────────────────
+let audioProgressTimer = null;
+
+function startAudioProgressTracking() {
+  stopAudioProgressTracking();
+  const bar = document.getElementById('audio-playing-bar');
+  const fill = document.getElementById('audio-progress-fill');
+  const current = document.getElementById('audio-time-current');
+  const total = document.getElementById('audio-time-total');
+  const waveform = document.getElementById('audio-waveform');
+  if (bar) bar.style.display = 'flex';
+  if (waveform) waveform.classList.add('playing');
+
+  function fmt(s) {
+    const m = Math.floor(s / 60);
+    return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  }
+
+  audioProgressTimer = setInterval(() => {
+    if (!audioPlayer) return stopAudioProgressTracking();
+    const dur = audioPlayer.duration || 0;
+    const cur = audioPlayer.currentTime || 0;
+    if (fill) fill.style.width = dur ? ((cur / dur) * 100) + '%' : '0%';
+    if (current) current.textContent = fmt(cur);
+    if (total && dur) total.textContent = fmt(dur);
+    if (audioPlayer.paused) {
+      if (waveform) waveform.classList.remove('playing');
+    } else {
+      if (waveform) waveform.classList.add('playing');
+    }
+  }, 250);
+}
+
+function stopAudioProgressTracking() {
+  clearInterval(audioProgressTimer);
+  audioProgressTimer = null;
+  const bar = document.getElementById('audio-playing-bar');
+  const waveform = document.getElementById('audio-waveform');
+  if (bar) bar.style.display = 'none';
+  if (waveform) waveform.classList.remove('playing');
+  const fill = document.getElementById('audio-progress-fill');
+  if (fill) fill.style.width = '0%';
+  const current = document.getElementById('audio-time-current');
+  if (current) current.textContent = '0:00';
+}
+
+// ─── AUTO-PLAY ────────────────────────────────────────────────────
+function saveAutoPlay(on) {
+  localStorage.setItem('ao_autoplay', on ? '1' : '0');
+}
+function getAutoPlay() {
+  return localStorage.getItem('ao_autoplay') === '1';
+}
+function loadAutoPlayPref() {
+  const cb = document.getElementById('autoplay-toggle');
+  if (cb) cb.checked = getAutoPlay();
+}
+
+// ─── AMBIENT SOUND (Web Audio API — no external files) ────────────
+let ambientCtx = null;
+let ambientNodes = [];
+let ambientOn = false;
+
+function toggleAmbient(on) {
+  ambientOn = on;
+  localStorage.setItem('ao_ambient', on ? '1' : '0');
+  if (on) startAmbient(); else stopAmbient();
+}
+
+function startAmbient() {
+  if (!ambientOn) return;
+  try {
+    if (!ambientCtx) ambientCtx = new (window.AudioContext || window.webkitAudioContext)();
+    // Gentle, slow pad — two low sine waves slightly detuned
+    const freqs = [55, 82.5, 110];
+    ambientNodes = freqs.map((freq, i) => {
+      const osc = ambientCtx.createOscillator();
+      const gain = ambientCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq + (i * 0.3); // very slight detune for warmth
+      gain.gain.setValueAtTime(0, ambientCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.018, ambientCtx.currentTime + 2);
+      osc.connect(gain);
+      gain.connect(ambientCtx.destination);
+      osc.start();
+      return { osc, gain };
+    });
+  } catch(e) { /* audio context blocked — silently ignore */ }
+}
+
+function stopAmbient() {
+  try {
+    ambientNodes.forEach(({ osc, gain }) => {
+      gain.gain.linearRampToValueAtTime(0, ambientCtx.currentTime + 1.5);
+      setTimeout(() => { try { osc.stop(); } catch(e) {} }, 1600);
+    });
+    ambientNodes = [];
+  } catch(e) {}
+}
+
+function loadAmbientPref() {
+  const saved = localStorage.getItem('ao_ambient') === '1';
+  const cb = document.getElementById('ambient-toggle');
+  if (cb) cb.checked = saved;
+  if (saved) { ambientOn = true; }
+}
+
+// ─── NEXT STORY PROMPT ────────────────────────────────────────────
+function openNextUnreadStory() {
+  const completed = getCompletedStories();
+  const next = STORIES.find(s => {
+    const accessible = isMember || FREE_STORY_IDS.includes(s.id);
+    return accessible && !completed.includes(s.id) && s.id !== (currentStory && currentStory.id);
+  });
+  if (next) {
+    closeModal();
+    setTimeout(() => openStory(next.id), 300);
+  } else {
+    showToast('🎉 You\'ve read all available stories!');
+  }
+}
+
+function showNextStoryPrompt() {
+  const btn = document.getElementById('btn-next-story');
+  if (!btn) return;
+  const completed = getCompletedStories();
+  const hasNext = STORIES.some(s => {
+    const accessible = isMember || FREE_STORY_IDS.includes(s.id);
+    return accessible && !completed.includes(s.id) && s.id !== (currentStory && currentStory.id);
+  });
+  btn.style.display = hasNext ? 'inline-flex' : 'none';
+}
+
+// ─── STAR POP ANIMATION (triggered on story complete) ─────────────
+function triggerStarPop() {
+  const wrap = document.getElementById('star-pop-wrap');
+  if (!wrap) return;
+  wrap.classList.remove('active');
+  void wrap.offsetWidth; // force reflow
+  wrap.classList.add('active');
+  // Play a soft chime
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [523, 659, 784].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.18);
+      gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + i * 0.18 + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.18 + 0.6);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + i * 0.18);
+      osc.stop(ctx.currentTime + i * 0.18 + 0.7);
+    });
+  } catch(e) {}
+}
+
+
+// ─── STICKY MOBILE CTA ────────────────────────────────────────────
+function showStickyCta() {
+  if (localStorage.getItem('ao_sticky_dismissed')) return;
+  const el = document.getElementById('sticky-mobile-cta');
+  if (el && window.innerWidth < 640) el.style.display = 'flex';
+}
+function dismissStickyCta() {
+  const el = document.getElementById('sticky-mobile-cta');
+  if (el) el.style.display = 'none';
+  localStorage.setItem('ao_sticky_dismissed', '1');
+}
+// Show after 4 seconds on home page only
+setTimeout(() => {
+  if (document.getElementById('page-home')?.style.display !== 'none') showStickyCta();
+}, 4000);
 // ─── DASHBOARD ────────────────────────────────────────────────────
 function updateDashboard() {
   const completed = getCompletedStories();
@@ -4267,6 +4681,8 @@ checkOnboarding();
 loadAccessibilityPrefs();
 loadSavedApiKey();
 if (localStorage.getItem('ao_kid_mode') === '1') applyKidMode();
+loadAutoPlayPref();
+loadAmbientPref();
 renderStories('all');
 updateProgressBar();
 </script>
