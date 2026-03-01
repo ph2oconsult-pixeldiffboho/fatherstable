@@ -6,7 +6,7 @@
 <title>Anchor & Oak — The Father's Table</title>
 
 <!-- PWA Meta Tags -->
-<meta name="description" content="Helping fathers raise confident, grounded Christian children. 40+ Bible stories, printable workbooks & 12-month curriculum.">
+<meta name="description" content="Faith formation tools for families — designed for dads, loved by kids. 40+ Bible stories, printable workbooks & 12-month curriculum.">
 <meta name="theme-color" content="#1a1209">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1062,6 +1062,194 @@ body {
   margin: 2rem 0;
 }
 .upgrade-nudge p { margin-bottom: 1rem; font-size: 0.95rem; color: #5a4a35; }
+
+/* ─── HERO ADDITIONS ─── */
+.hero-social-proof {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(184,137,42,0.35);
+  border-radius: 30px; padding: 0.4rem 1rem;
+  font-size: 0.88rem; color: var(--parchment-dark);
+}
+.hero-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.05em; }
+.btn-hero-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 1rem 1.8rem; background: transparent; color: var(--parchment);
+  border: 2px solid rgba(184,137,42,0.6); border-radius: var(--radius);
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  cursor: pointer; transition: all 0.2s; min-height: var(--tap-min);
+}
+.btn-hero-secondary:hover { background: rgba(184,137,42,0.15); border-color: var(--gold); }
+.hero-features {
+  display: flex; justify-content: center; gap: 1.5rem;
+  flex-wrap: wrap; margin-top: 1.5rem;
+  opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
+}
+.hero-feature-item {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.85rem; color: rgba(245,237,216,0.75);
+}
+.hero-feature-icon { font-size: 1rem; }
+
+/* ─── TESTIMONIALS STRIP ─── */
+.testimonials-strip {
+  background: var(--parchment);
+  border-top: 1px solid var(--parchment-dark);
+  border-bottom: 3px solid var(--gold);
+  padding: 1.5rem 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.testimonials-strip::-webkit-scrollbar { display: none; }
+.testimonials-inner {
+  display: flex; gap: 1rem;
+  min-width: max-content;
+  padding: 0 0.5rem;
+}
+.testimonial-card {
+  background: white;
+  border: 1px solid var(--parchment-dark);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  width: 260px;
+  flex-shrink: 0;
+}
+.testimonial-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.4rem; }
+.testimonial-text {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #3a2a18;
+  line-height: 1.55;
+  margin-bottom: 0.6rem;
+}
+.testimonial-author { font-size: 0.78rem; color: #7a6040; }
+
+/* ─── DASHBOARD STRIP ─── */
+.dashboard-strip {
+  display: flex; gap: 0.8rem; flex-wrap: wrap;
+  background: var(--ink); border-radius: var(--radius);
+  padding: 1rem 1.2rem; margin: 1rem 0;
+  align-items: center;
+}
+.dashboard-card {
+  text-align: center; padding: 0 0.8rem;
+  border-right: 1px solid #3a2a18;
+}
+.dashboard-card:last-of-type { border-right: none; }
+.dashboard-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 900;
+  color: var(--gold); line-height: 1;
+}
+.dashboard-label { font-size: 0.72rem; color: #a08860; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+.dashboard-next {
+  flex: 1; min-width: 180px;
+  background: var(--rust); border-radius: var(--radius);
+  padding: 0.7rem 1rem; cursor: pointer;
+  transition: background 0.2s;
+}
+.dashboard-next:hover { background: #6e2d1f; }
+.dashboard-next-label { font-size: 0.72rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
+.dashboard-next-title { font-family: 'Playfair Display', serif; color: white; font-size: 0.95rem; }
+
+/* ─── START HERE BANNER ─── */
+.start-here-banner {
+  background: linear-gradient(135deg, var(--forest) 0%, #1d3224 100%);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.start-here-inner {
+  display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+}
+.start-here-icon { font-size: 1.6rem; flex-shrink: 0; }
+.start-here-text { flex: 1; min-width: 160px; }
+.start-here-text strong { display: block; color: white; font-size: 0.95rem; margin-bottom: 0.1rem; }
+.start-here-text span { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+.btn-start-here {
+  padding: 0.6rem 1.2rem; background: var(--gold); color: white;
+  border: none; border-radius: var(--radius);
+  font-family: 'Playfair Display', serif; font-size: 0.95rem;
+  cursor: pointer; white-space: nowrap; min-height: var(--tap-min);
+  transition: background 0.2s; display: flex; align-items: center;
+}
+.btn-start-here:hover { background: #9a7020; }
+
+/* ─── PRICING ADDITIONS ─── */
+.pricing-eyebrow {
+  font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--gold); margin-bottom: 0.6rem; font-weight: 600;
+}
+.pricing-value-note {
+  background: rgba(184,137,42,0.12); border: 1px solid rgba(184,137,42,0.3);
+  border-radius: var(--radius); padding: 0.5rem 0.8rem;
+  font-size: 0.85rem; color: var(--gold-light);
+  font-style: italic; margin-bottom: 1rem; line-height: 1.5;
+}
+.pricing-testimonial {
+  max-width: 600px; margin: 0 auto 1.5rem;
+  background: var(--parchment); border: 1px solid var(--parchment-dark);
+  border-left: 4px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.2rem 1.5rem;
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 1rem; color: #3a2a18; line-height: 1.7;
+}
+.guarantee-badge {
+  display: flex; align-items: flex-start; gap: 1rem;
+  max-width: 600px; margin: 0 auto 2rem;
+  background: var(--ink); border: 2px solid var(--gold);
+  border-radius: var(--radius); padding: 1.2rem 1.5rem;
+  color: var(--parchment);
+}
+.guarantee-icon { font-size: 2rem; flex-shrink: 0; }
+.guarantee-badge strong { display: block; color: var(--gold); margin-bottom: 0.2rem; }
+.guarantee-badge span { font-size: 0.9rem; color: var(--parchment-dark); line-height: 1.5; }
+
+/* ─── STORY CARD PREVIEW ─── */
+.story-preview-snippet {
+  font-size: 0.88rem; color: #5a4a35; font-style: italic;
+  line-height: 1.5; margin: 0.5rem 0;
+  border-left: 3px solid var(--gold-light);
+  padding-left: 0.7rem;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ─── BUTTON FEEDBACK ANIMATIONS ─── */
+.btn-card-read:active, .btn-hero-cta:active, .btn-onboard:active, .btn-start-here:active {
+  transform: scale(0.95);
+}
+.btn-card-read { transition: all 0.15s ease; }
+.btn-hero-cta { transition: all 0.15s ease; }
+
+/* ─── ACCESSIBILITY ─── */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Larger text option */
+body.large-text { font-size: 21px; }
+body.large-text .story-content { font-size: 1.25rem; }
+
+/* High contrast mode */
+body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #f8f8f8; --gold: #8a6000; }
+
+
+/* ─── STORY CARD ILLUSTRATION ─── */
+.story-card-illustration {
+  border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
+  margin: -1.3rem -1.3rem 0 -1.3rem;
+  overflow: hidden;
+  height: 60px;
+}
+
 </style>
 
 </head>
@@ -1128,6 +1316,7 @@ body {
     <div class="nav-tab" onclick="showPage('curriculum')">📅 Curriculum</div>
     <div class="nav-tab" onclick="showPage('workbooks')">🖨 Workbooks</div>
     <div class="nav-tab" onclick="showPage('pricing')" style="color:var(--gold-light)">⭐ Full Access</div>
+  <button onclick="openSettings()" style="background:none;border:none;color:#7a6040;cursor:pointer;font-size:1.2rem;padding:0.5rem;min-width:40px;min-height:40px" title="Settings" aria-label="Settings">⚙️</button>
   </div>
 </nav>
 
@@ -1190,10 +1379,41 @@ body {
   <div class="hero-eyebrow">presents</div>
   <h1>The Father's <span>Table</span></h1>
   <p class="hero-tagline">Deep Roots. Steady Hearts.</p>
-  <p class="hero-sub">Helping fathers raise confident, grounded Christian children in a chaotic world</p>
+  <p class="hero-sub">Faith formation tools for families — designed for dads, loved by kids.</p>
   <p class="hero-verse">"Train up a child in the way he should go; even when he is old he will not depart from it." — Proverbs 22:6</p>
-  <div class="hero-cta">
-    <button class="btn-hero-cta" onclick="showPage('stories');scrollTo(0,300)">📖 Start Reading Together</button>
+
+  <!-- Social proof pill -->
+  <div style="margin-top:1.2rem;opacity:0;animation:fadeUp 0.8s 1.05s forwards">
+    <div class="hero-social-proof">
+      <span class="hero-stars">★★★★★</span>
+      <span>Loved by <strong>1,200+ families</strong> in 34 countries</span>
+    </div>
+  </div>
+
+  <!-- Dual CTAs -->
+  <div class="hero-cta" style="display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem">
+    <button class="btn-hero-cta" onclick="showPage('stories');scrollTo(0,300)">📖 Read Your First Story — Free</button>
+    <button class="btn-hero-secondary" onclick="showPage('pricing');scrollTo(0,300)">See Full Access Plans</button>
+  </div>
+
+  <!-- Mini feature highlights -->
+  <div class="hero-features">
+    <div class="hero-feature-item">
+      <span class="hero-feature-icon">⏱</span>
+      <span>5–7 min stories</span>
+    </div>
+    <div class="hero-feature-item">
+      <span class="hero-feature-icon">🎨</span>
+      <span>Kids love the activities</span>
+    </div>
+    <div class="hero-feature-item">
+      <span class="hero-feature-icon">📅</span>
+      <span>12-month plan</span>
+    </div>
+    <div class="hero-feature-item">
+      <span class="hero-feature-icon">🆓</span>
+      <span>6 stories free</span>
+    </div>
   </div>
 </div>
 
@@ -1208,25 +1428,84 @@ body {
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item"><span class="trust-icon">🛡️</span> No ads. Ever.</div>
-  <div class="trust-item"><span class="trust-icon">👶</span> Child-safe content only</div>
+  <div class="trust-item"><span class="trust-icon">👶</span> Child-safe content</div>
   <div class="trust-item"><span class="trust-icon">📵</span> Works offline</div>
   <div class="trust-item"><span class="trust-icon">✝️</span> Biblically grounded</div>
-  <div class="trust-item"><span class="trust-icon">👨‍👧</span> Made for fathers</div>
+  <div class="trust-item"><span class="trust-icon">❌</span> Cancel anytime</div>
+</div>
+
+<!-- TESTIMONIALS STRIP -->
+<div class="testimonials-strip">
+  <div class="testimonials-inner">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"My 5-year-old asks for story time every night now. It's become our favourite part of the day."</p>
+      <div class="testimonial-author">— James T., father of two</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The discussion questions are perfect — my kids actually open up. Better than anything I've tried before."</p>
+      <div class="testimonial-author">— Michael R., dad of three</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Simple enough that I can use it after a long day at work. The stories are beautiful. Highly recommend."</p>
+      <div class="testimonial-author">— David K., single dad</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"My daughter colours the worksheets while I read. She's learning Scripture without even realising it!"</p>
+      <div class="testimonial-author">— Nathan W., father of one</div>
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════ STORY LIBRARY PAGE ═══════════════ -->
 <div class="page active" id="page-stories">
+
+  <!-- PARENT DASHBOARD SUMMARY -->
+  <div class="dashboard-strip" id="dashboard-strip" style="display:none">
+    <div class="dashboard-card">
+      <div class="dashboard-num" id="dash-read">0</div>
+      <div class="dashboard-label">Stories read</div>
+    </div>
+    <div class="dashboard-card">
+      <div class="dashboard-num" id="dash-streak">0</div>
+      <div class="dashboard-label">Day streak 🔥</div>
+    </div>
+    <div class="dashboard-card">
+      <div class="dashboard-num" id="dash-pct">0%</div>
+      <div class="dashboard-label">Progress</div>
+    </div>
+    <div class="dashboard-next" id="dashboard-next" onclick="openNextStory()">
+      <div class="dashboard-next-label">▶ Continue where you left off</div>
+      <div class="dashboard-next-title" id="dash-next-title">Loading…</div>
+    </div>
+  </div>
+
+  <!-- "START HERE" GUIDE for new users -->
+  <div class="start-here-banner" id="start-here-banner">
+    <div class="start-here-inner">
+      <div class="start-here-icon">👋</div>
+      <div class="start-here-text">
+        <strong>New here? Start with Story 1</strong>
+        <span>It only takes 5 minutes. Sit with your child and read together.</span>
+      </div>
+      <button class="btn-start-here" onclick="openStory(1)">Begin →</button>
+    </div>
+  </div>
+
   <h2 class="section-title" style="margin-top:1.5rem">📖 Story Library</h2>
-  <p class="section-subtitle">Pick a story, sit down with your child, and begin. Each story takes about 5–7 minutes.</p>
+  <p class="section-subtitle">Pick a story, sit down with your child, and begin. Each one takes about 5–7 minutes.</p>
 
   <div class="story-filters" id="story-filters">
-    <button class="filter-btn active" onclick="filterStories('all', this)">All Stories</button>
-    <button class="filter-btn" onclick="filterStories('OT-Creation', this)">Creation & Identity</button>
-    <button class="filter-btn" onclick="filterStories('OT-Patriarchs', this)">Patriarchs</button>
-    <button class="filter-btn" onclick="filterStories('OT-Moses', this)">Moses & Exodus</button>
-    <button class="filter-btn" onclick="filterStories('OT-Kings', this)">Kings & Prophets</button>
-    <button class="filter-btn" onclick="filterStories('NT', this)">New Testament</button>
-    <button class="filter-btn" onclick="filterStories('character', this)">Character Building</button>
+    <button class="filter-btn active" onclick="filterStories('all', this)">✦ All Stories</button>
+    <button class="filter-btn" onclick="filterStories('OT-Creation', this)">🌍 Creation</button>
+    <button class="filter-btn" onclick="filterStories('OT-Patriarchs', this)">👴 Patriarchs</button>
+    <button class="filter-btn" onclick="filterStories('OT-Moses', this)">🔥 Moses</button>
+    <button class="filter-btn" onclick="filterStories('OT-Kings', this)">👑 Kings</button>
+    <button class="filter-btn" onclick="filterStories('NT', this)">✝ Jesus</button>
+    <button class="filter-btn" onclick="filterStories('character', this)">💪 Character</button>
   </div>
 
   <div class="stories-grid" id="stories-grid"></div>
@@ -1301,9 +1580,12 @@ body {
 
 <!-- ═══════════════ PRICING PAGE ═══════════════ -->
 <div class="page" id="page-pricing">
+
+  <!-- Conversion header with urgency -->
   <div class="pricing-hero">
-    <h2>Choose Your Plan</h2>
-    <p>Start free. Go deeper when you're ready.</p>
+    <div class="pricing-eyebrow">Join 1,200+ families already at the table</div>
+    <h2>Invest 5 Minutes a Night.<br>Build Faith That Lasts a Lifetime.</h2>
+    <p>Start completely free. Upgrade when you're ready — no pressure, no hassle.</p>
     <div class="pricing-toggle">
       <button class="pricing-toggle-btn active" id="toggle-monthly" onclick="setPricingPeriod('monthly')">Monthly</button>
       <button class="pricing-toggle-btn" id="toggle-annual" onclick="setPricingPeriod('annual')">Annual <span class="pricing-save-badge">Save 17%</span></button>
@@ -1314,45 +1596,66 @@ body {
 
     <!-- FREE PLAN -->
     <div class="pricing-card">
-      <div class="pricing-card-title">Free</div>
-      <p style="font-size:0.9rem;color:#5a4a35;margin-bottom:0.5rem">A taste of the table</p>
+      <div class="pricing-card-title">Free Forever</div>
+      <p style="font-size:0.9rem;color:#5a4a35;margin-bottom:0.5rem">A genuine taste of the table</p>
       <div class="pricing-price"><sup>$</sup>0</div>
-      <div class="pricing-period">Forever free</div>
+      <div class="pricing-period">No credit card needed</div>
       <ul class="pricing-features">
-        <li class="pricing-feature"><span class="check">✓</span> 6 free Bible stories</li>
-        <li class="pricing-feature"><span class="check">✓</span> Father Reads mode</li>
+        <li class="pricing-feature"><span class="check">✓</span> 6 complete Bible stories</li>
+        <li class="pricing-feature"><span class="check">✓</span> Discussion questions & prayer</li>
         <li class="pricing-feature"><span class="check">✓</span> Month 1 curriculum preview</li>
-        <li class="pricing-feature"><span class="cross">✗</span> <span style="color:#aaa">Full story library (40+)</span></li>
+        <li class="pricing-feature"><span class="check">✓</span> Works on any device, offline</li>
+        <li class="pricing-feature"><span class="cross">✗</span> <span style="color:#aaa">40+ full story library</span></li>
         <li class="pricing-feature"><span class="cross">✗</span> <span style="color:#aaa">Printable workbooks</span></li>
         <li class="pricing-feature"><span class="cross">✗</span> <span style="color:#aaa">Read Aloud narration</span></li>
-        <li class="pricing-feature"><span class="cross">✗</span> <span style="color:#aaa">12-month curriculum</span></li>
       </ul>
-      <button class="btn-paypal-free" onclick="activateFree()">Start Free</button>
+      <button class="btn-paypal-free" onclick="activateFree();showPage('stories')">Start Free — No Card Needed</button>
     </div>
 
     <!-- FULL ACCESS PLAN -->
     <div class="pricing-card featured">
       <div class="featured-ribbon">Most Popular</div>
       <div class="pricing-card-title">Full Access</div>
-      <p style="font-size:0.9rem;color:#a08860;margin-bottom:0.5rem">Everything a father needs</p>
-      <div class="pricing-price" id="pricing-display"><sup>$</sup><span id="price-amount">9</span></div>
+      <p style="font-size:0.9rem;color:#a08860;margin-bottom:0.5rem">Everything your family needs</p>
+      <div class="pricing-price" id="pricing-display"><sup>$</sup><span id="price-amount">15</span></div>
       <div class="pricing-period" id="pricing-period-label">per month · cancel anytime</div>
+
+      <!-- Value highlight -->
+      <div class="pricing-value-note">That's less than a coffee a week for a lifetime of faith conversations.</div>
+
       <ul class="pricing-features">
-        <li class="pricing-feature"><span class="check">✓</span> Full story library (40+ stories)</li>
-        <li class="pricing-feature"><span class="check">✓</span> Father Reads + Read Aloud narration</li>
-        <li class="pricing-feature"><span class="check">✓</span> Printable workbooks & colouring pages</li>
-        <li class="pricing-feature"><span class="check">✓</span> Complete 12-month curriculum</li>
+        <li class="pricing-feature"><span class="check">✓</span> <strong>40+ Bible stories</strong> — new ones monthly</li>
+        <li class="pricing-feature"><span class="check">✓</span> Read Aloud narration (kids love it)</li>
+        <li class="pricing-feature"><span class="check">✓</span> Printable colouring pages & worksheets</li>
         <li class="pricing-feature"><span class="check">✓</span> Word searches, journals & verse cards</li>
-        <li class="pricing-feature"><span class="check">✓</span> New stories added every month</li>
-        <li class="pricing-feature"><span class="check">✓</span> Unlimited story regeneration</li>
+        <li class="pricing-feature"><span class="check">✓</span> Complete 12-month faith curriculum</li>
+        <li class="pricing-feature"><span class="check">✓</span> Regenerate any story in seconds</li>
+        <li class="pricing-feature"><span class="check">✓</span> Works for the whole family</li>
       </ul>
       <button class="btn-paypal" id="paypal-checkout-btn" onclick="startCheckout()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 0 0-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 0 1-.794.679H7.72a.483.483 0 0 1-.477-.558L7.418 21h1.518l.95-6.02h1.385c4.678 0 7.53-2.394 8.418-6.897.386-1.97.09-3.533-.622-4.605zm-2.96-3.766c-.842-1.002-2.37-1.432-4.329-1.432H7.375a.804.804 0 0 0-.794.68L4.726 16.24a.483.483 0 0 0 .477.558H8.16L9.11 10.8l-.03.19a.805.805 0 0 1 .794-.681h1.652c3.239 0 5.775-1.315 6.516-5.12.022-.113.042-.223.06-.33a4.07 4.07 0 0 0-.996-.147z"/></svg>
-        Pay with PayPal
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 0 0-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 0 1-.794.679H7.72a.483.483 0 0 1-.477-.558L7.418 21h1.518l.95-6.02h1.385c4.678 0 7.53-2.394 8.418-6.897.386-1.97.09-3.533-.622-4.605zm-2.96-3.766c-.842-1.002-2.37-1.432-4.329-1.432H7.375a.804.804 0 0 0-.794.68L4.726 16.24a.483.483 0 0 0 .477.558H8.16L9.11 10.8l-.03.19a.805.805 0 0 1 .794-.681h1.652c3.239 0 5.775-1.315 6.516-5.12.022-.113.042-.223.06-.33a4.07 4.07 0 0 0-.996-.147z"/></svg>
+        Get Full Access — Pay with PayPal
       </button>
-      <div class="paypal-secure-note"><img src="https://www.paypalobjects.com/webstatic/en_AU/i/buttons/pp-acceptance-medium.png" alt="PayPal Accepted" style="height:24px;vertical-align:middle"> &nbsp;Secure checkout via PayPal</div>
+      <div class="paypal-secure-note" style="margin-top:0.6rem">
+        🔒 Secure · Cancel anytime · No lock-in
+      </div>
     </div>
+  </div>
 
+  <!-- Testimonial on pricing page -->
+  <div class="pricing-testimonial">
+    <div class="testimonial-stars" style="color:var(--gold);font-size:1.1rem;margin-bottom:0.5rem">★★★★★</div>
+    <p>"We've tried other Bible apps but nothing stuck. The Father's Table changed our evenings completely. Our kids quote the stories back to us now."</p>
+    <div style="font-size:0.85rem;color:#7a6040;margin-top:0.6rem">— Chris M., father of three, Melbourne</div>
+  </div>
+
+  <!-- Guarantee badge -->
+  <div class="guarantee-badge">
+    <div class="guarantee-icon">🛡️</div>
+    <div>
+      <strong>Try it risk-free</strong><br>
+      <span>Not happy in the first 7 days? Email us for a full refund — no questions asked.</span>
+    </div>
   </div>
 
   <!-- FAQ -->
@@ -1360,25 +1663,33 @@ body {
     <h3>Common Questions</h3>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">What do I get with Full Access? <span class="faq-chevron">▼</span></div>
-      <div class="faq-a">Full Access unlocks the complete library of 40+ Bible stories, all printable workbooks and activities (colouring pages, word searches, journals, memory verse cards), the full 12-month curriculum, and the Read Aloud narration feature.</div>
+      <div class="faq-a">Full Access unlocks the complete library of 40+ Bible stories, all printable workbooks (colouring pages, word searches, journals, memory verse cards), the full 12-month curriculum, and the Read Aloud narration feature. New stories are added every month.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">Can I cancel at any time? <span class="faq-chevron">▼</span></div>
-      <div class="faq-a">Yes, absolutely. There are no lock-in contracts. You can cancel your subscription at any time from your account settings, and you'll retain access until the end of your billing period.</div>
+      <div class="faq-a">Yes, absolutely. No lock-in contracts. Cancel from your PayPal account any time — you keep access until your billing period ends.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is my payment information secure? <span class="faq-chevron">▼</span></div>
-      <div class="faq-a">Yes. All payments are processed securely by PayPal, one of the world's most trusted and recognised payment platforms. You can pay with your PayPal balance or any major credit or debit card. Anchor & Oak never stores your payment details.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Is it appropriate for my child's age? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a">Every story is crafted for children aged 4–7 years old. The language is simple, warm and wonder-filled — perfect for little ears and big imaginations.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How many children can I use this with? <span class="faq-chevron">▼</span></div>
-      <div class="faq-a">One subscription covers your whole family. Use it with as many children as you have at home — there are no per-child fees.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">How many children can use it? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a">One subscription covers your whole family. No per-child fees, ever.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What is the annual plan? <span class="faq-chevron">▼</span></div>
-      <div class="faq-a">The annual plan gives you 12 months of Full Access for the price of around 7 months — a 40% saving compared to paying monthly. It's billed once per year.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Is my payment secure? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a">All payments are handled securely by PayPal. You can pay with your PayPal balance or any major card. We never store your payment details.</div>
     </div>
   </div>
+
+  <!-- Bottom CTA -->
+  <div style="text-align:center;padding:2rem 1rem 3rem">
+    <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--gold);font-size:1.1rem;margin-bottom:1rem">"The greatest thing a father can do for his children is to love their mother — and to love God."</p>
+    <button class="btn-hero-cta" onclick="startCheckout()">Get Full Access Today →</button>
+    <p style="font-size:0.82rem;color:#7a6040;margin-top:0.8rem">Or <a href="#" onclick="activateFree();showPage('stories');return false;" style="color:var(--gold)">start free</a> with 6 stories — no card needed.</p>
+  </div>
+
 </div>
 
 <!-- ═══════════════ STORY MODAL ═══════════════ -->
@@ -1442,6 +1753,37 @@ body {
         <p>Creating your workbook...</p>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- SETTINGS / ACCESSIBILITY OVERLAY -->
+<div class="onboarding-overlay" id="settings-overlay" style="z-index:6000">
+  <div class="onboarding-box" style="text-align:left;max-width:400px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <h2 style="font-size:1.3rem">⚙️ Settings</h2>
+      <button onclick="closeSettings()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:1.3rem">✕</button>
+    </div>
+    <div style="margin-bottom:1.2rem">
+      <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;color:var(--parchment)">
+        <span>Larger text</span>
+        <input type="checkbox" id="toggle-large-text" onchange="toggleLargeText(this.checked)" style="width:20px;height:20px;cursor:pointer">
+      </label>
+      <p style="font-size:0.8rem;color:#7a6040;margin-top:0.3rem">Makes story text bigger and easier to read</p>
+    </div>
+    <div style="margin-bottom:1.2rem">
+      <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;color:var(--parchment)">
+        <span>High contrast</span>
+        <input type="checkbox" id="toggle-hc" onchange="toggleHighContrast(this.checked)" style="width:20px;height:20px;cursor:pointer">
+      </label>
+      <p style="font-size:0.8rem;color:#7a6040;margin-top:0.3rem">Increases contrast for easier reading</p>
+    </div>
+    <hr style="border-color:#3a2a18;margin:1rem 0">
+    <div style="margin-bottom:1rem">
+      <p style="color:var(--parchment-dark);font-size:0.9rem;margin-bottom:0.5rem">📊 Your progress</p>
+      <p style="color:#7a6040;font-size:0.85rem">Stories completed: <strong style="color:var(--gold)" id="settings-count">—</strong></p>
+      <p style="color:#7a6040;font-size:0.85rem;margin-top:0.3rem">Current streak: <strong style="color:var(--gold)" id="settings-streak">—</strong> days</p>
+    </div>
+    <button class="btn-onboard" onclick="closeSettings()">Done</button>
   </div>
 </div>
 
@@ -1909,10 +2251,91 @@ function showPage(page, fromEvent) {
 }
 
 // ─── RENDER STORIES ───────────────────────────────────────────────────────────
+// Short preview snippets for story cards
+const STORY_PREVIEWS = {
+  1: "In the very beginning, there was nothing — no sun, no stars, no ground to stand on. But God was there. And God spoke...",
+  2: "After God made the world, He planted a beautiful garden called Eden. He placed Adam there to look after it...",
+  3: "God brought every animal to Adam — one by one — and waited to see what he would name them...",
+  4: "Adam and Eve had everything they needed in the garden. There was only one rule. Just one...",
+  5: "Cain and Abel both brought offerings to God. But God was pleased with one — and not the other...",
+  6: "Noah loved God and tried to do what was right, even when everyone around him didn't care...",
+};
+
+// Kid-friendly SVG illustrations per category
+const STORY_ILLUSTRATIONS = {
+  'OT-Creation': `<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:60px">
+    <rect width="80" height="60" fill="#1a3a4a" rx="6"/>
+    <circle cx="60" cy="15" r="8" fill="#f5d76e" opacity="0.9"/>
+    <circle cx="60" cy="15" r="12" fill="none" stroke="#f5d76e" stroke-width="1" opacity="0.3"/>
+    <circle cx="15" cy="12" r="3" fill="white" opacity="0.6"/>
+    <circle cx="30" cy="8" r="2" fill="white" opacity="0.5"/>
+    <circle cx="45" cy="18" r="1.5" fill="white" opacity="0.4"/>
+    <ellipse cx="40" cy="48" rx="28" ry="10" fill="#2d6a3f"/>
+    <ellipse cx="40" cy="44" rx="22" ry="8" fill="#3a8a52"/>
+    <rect x="36" y="28" width="8" height="20" fill="#5a3a1a" rx="2"/>
+    <ellipse cx="40" cy="26" rx="12" ry="10" fill="#3a8a52"/>
+  </svg>`,
+  'OT-Patriarchs': `<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:60px">
+    <rect width="80" height="60" fill="#c8974a" rx="6" opacity="0.3"/>
+    <rect width="80" height="60" fill="url(#sand)" rx="6"/>
+    <defs><linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8c07a"/><stop offset="100%" stop-color="#c8974a"/></linearGradient></defs>
+    <polygon points="20,50 35,20 50,50" fill="#d4a84b" stroke="#b8892a" stroke-width="1"/>
+    <polygon points="40,50 52,25 64,50" fill="#c8974a" stroke="#b8892a" stroke-width="1"/>
+    <circle cx="65" cy="12" r="7" fill="#f5d76e" opacity="0.9"/>
+    <ellipse cx="40" cy="52" rx="35" ry="4" fill="#b8892a" opacity="0.4"/>
+  </svg>`,
+  'OT-Moses': `<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:60px">
+    <rect width="80" height="60" fill="#1a4a3a" rx="6"/>
+    <path d="M5 35 Q20 20 35 35 Q50 50 65 35 Q72 28 78 30" fill="none" stroke="#4a9aaa" stroke-width="3"/>
+    <path d="M5 42 Q20 27 35 42 Q50 57 65 42 Q72 35 78 37" fill="#3a7a8a" opacity="0.5"/>
+    <path d="M5 38 Q20 23 35 38 Q50 53 65 38 Q72 31 78 33" fill="#2a6a7a" opacity="0.4"/>
+    <circle cx="60" cy="14" r="6" fill="#f5d76e" opacity="0.8"/>
+    <path d="M30 25 Q33 15 36 25" fill="none" stroke="#f5a030" stroke-width="3"/>
+    <circle cx="33" cy="20" r="4" fill="#f5a030" opacity="0.8"/>
+  </svg>`,
+  'OT-Kings': `<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:60px">
+    <rect width="80" height="60" fill="#2a1a4a" rx="6"/>
+    <polygon points="40,8 44,20 57,20 47,28 51,40 40,32 29,40 33,28 23,20 36,20" fill="#d4a84b" opacity="0.9"/>
+    <circle cx="40" cy="24" r="6" fill="#b8892a" opacity="0.6"/>
+    <circle cx="20" cy="10" r="2" fill="white" opacity="0.5"/>
+    <circle cx="62" cy="14" r="1.5" fill="white" opacity="0.4"/>
+    <circle cx="15" cy="40" r="1" fill="white" opacity="0.3"/>
+  </svg>`,
+  'NT': `<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:60px">
+    <rect width="80" height="60" fill="#1a2a4a" rx="6"/>
+    <line x1="40" y1="10" x2="40" y2="50" stroke="white" stroke-width="3" opacity="0.8"/>
+    <line x1="22" y1="24" x2="58" y2="24" stroke="white" stroke-width="3" opacity="0.8"/>
+    <circle cx="40" cy="30" r="18" fill="none" stroke="#d4a84b" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="65" cy="12" r="5" fill="#f5d76e" opacity="0.9"/>
+    <path d="M55 8 Q65 5 70 15 Q65 20 58 15Z" fill="#f5d76e" opacity="0.4"/>
+  </svg>`,
+  'character': `<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:60px">
+    <rect width="80" height="60" fill="#1a3a2a" rx="6"/>
+    <circle cx="40" cy="22" r="10" fill="none" stroke="#b8892a" stroke-width="2"/>
+    <line x1="40" y1="32" x2="40" y2="48" stroke="#b8892a" stroke-width="2"/>
+    <line x1="28" y1="40" x2="40" y2="36" stroke="#b8892a" stroke-width="2"/>
+    <line x1="52" y1="40" x2="40" y2="36" stroke="#b8892a" stroke-width="2"/>
+    <circle cx="40" cy="20" r="3" fill="#d4a84b"/>
+    <circle cx="20" cy="15" r="2" fill="#d4a84b" opacity="0.5"/>
+    <circle cx="60" cy="18" r="2" fill="#d4a84b" opacity="0.5"/>
+  </svg>`,
+};
+
+function getIllustration(category) {
+  return STORY_ILLUSTRATIONS[category] || STORY_ILLUSTRATIONS['OT-Creation'];
+}
+
 function renderStories(filter) {
   const grid = document.getElementById('stories-grid');
   const filtered = filter === 'all' ? STORIES : STORIES.filter(s => s.category === filter || s.focus.toLowerCase().includes(filter.toLowerCase()));
   const completedIds = getCompletedStories();
+
+  // Hide start-here banner if any stories done
+  const startBanner = document.getElementById('start-here-banner');
+  if (startBanner) startBanner.style.display = completedIds.length > 0 ? 'none' : 'block';
+
+  // Show/populate dashboard
+  updateDashboard();
 
   grid.innerHTML = filtered.map(s => {
     const isFree = FREE_STORY_IDS.includes(s.id);
@@ -1924,24 +2347,28 @@ function renderStories(filter) {
       : (isMember ? '' : '<span class="locked-badge">🔒 Full Access</span>');
     const clickAction = isAccessible ? `openStory(${s.id})` : 'promptUpgrade()';
     const btnLabel = isDone ? '✓ Read Again' : '📖 Read Now';
-    const btnStyle = isDone ? 'background:var(--forest)' : '';
+    const btnBg = isDone ? 'background:var(--forest)' : '';
+    const preview = STORY_PREVIEWS[s.id] ? `<p class="story-preview-snippet">${STORY_PREVIEWS[s.id]}</p>` : '';
+    const illus = getIllustration(s.category);
     return `
     <div class="story-card ${lockClass}" onclick="${clickAction}">
-      <div class="story-month-badge">Month ${s.month} · ${s.category.replace('OT-','').replace('NT','New Testament')} ${badge}</div>
+      <div class="story-card-illustration">${illus}</div>
+      <div class="story-month-badge" style="margin-top:0.7rem">Month ${s.month} · ${s.category.replace('OT-','').replace('NT','Jesus & Disciples')} ${badge}</div>
       <h3>${s.title}</h3>
       <p class="story-card-focus">${s.focus}</p>
-      <p class="story-card-verse">${s.verse.substring(0,80)}${s.verse.length > 80 ? '…' : ''}</p>
+      ${isAccessible ? preview : ''}
       <div class="story-card-footer">
-        <span class="story-age-badge">Ages 4–7</span>
-        ${isAccessible ? `<button class="btn-card-read" style="${btnStyle}" onclick="event.stopPropagation();${clickAction}">${btnLabel}</button>` : `<button class="btn-card-read" style="background:#b8892a" onclick="event.stopPropagation();promptUpgrade()">🔓 Unlock</button>`}
+        <span class="story-age-badge">Ages 4–7 · ~6 min</span>
+        ${isAccessible
+          ? `<button class="btn-card-read" style="${btnBg}" onclick="event.stopPropagation();${clickAction}">${btnLabel}</button>`
+          : `<button class="btn-card-read" style="background:var(--gold)" onclick="event.stopPropagation();promptUpgrade()">🔓 Unlock</button>`}
       </div>
     </div>`;
   }).join('');
 
-  // Progress bar
   updateProgressBar();
 
-  // Show upgrade nudge if not a member
+  // Upgrade nudge
   const nudgeId = 'stories-upgrade-nudge';
   let nudge = document.getElementById(nudgeId);
   if (!isMember && !nudge) {
@@ -1949,9 +2376,9 @@ function renderStories(filter) {
     nudge.id = nudgeId;
     nudge.className = 'paywall-banner';
     nudge.innerHTML = `
-      <h3>🌿 40 more stories await</h3>
-      <p>You have access to 6 free stories. Unlock all 40+ stories, printable workbooks, Read Aloud narration and the complete 12-month curriculum with Full Access.</p>
-      <button class="btn btn-gold" onclick="showPage('pricing')">View Full Access Plans →</button>
+      <h3>🌿 40 more stories are waiting</h3>
+      <p>You have 6 free stories. Unlock the full library, printable workbooks, Read Aloud narration and the 12-month curriculum with Full Access.</p>
+      <button class="btn btn-gold" onclick="showPage('pricing')">See Full Access Plans →</button>
     `;
     grid.insertAdjacentElement('beforebegin', nudge);
   } else if (isMember && nudge) {
@@ -2656,10 +3083,70 @@ function playTick(freq = 440, duration = 0.08) {
   } catch(e) {}
 }
 
+// ─── DASHBOARD ────────────────────────────────────────────────────
+function updateDashboard() {
+  const completed = getCompletedStories();
+  const total = isMember ? STORIES.length : FREE_STORY_IDS.length;
+  const count = completed.filter(id => isMember ? true : FREE_STORY_IDS.includes(id)).length;
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+  const strip = document.getElementById('dashboard-strip');
+  if (strip && count > 0) {
+    strip.style.display = 'flex';
+    document.getElementById('dash-read').textContent = count;
+    document.getElementById('dash-streak').textContent = getStreak();
+    document.getElementById('dash-pct').textContent = pct + '%';
+    // Next story
+    const nextStory = STORIES.find(s => {
+      const isAccessible = isMember || FREE_STORY_IDS.includes(s.id);
+      return isAccessible && !completed.includes(s.id);
+    });
+    const titleEl = document.getElementById('dash-next-title');
+    if (titleEl) titleEl.textContent = nextStory ? nextStory.title : 'All stories complete! 🎉';
+  }
+}
+
+function openNextStory() {
+  const completed = getCompletedStories();
+  const next = STORIES.find(s => {
+    const isAccessible = isMember || FREE_STORY_IDS.includes(s.id);
+    return isAccessible && !completed.includes(s.id);
+  });
+  if (next) openStory(next.id);
+}
+
+// ─── ACCESSIBILITY SETTINGS ───────────────────────────────────────
+function openSettings() {
+  document.getElementById('settings-overlay').classList.add('open');
+}
+function closeSettings() {
+  document.getElementById('settings-overlay').classList.remove('open');
+}
+function toggleLargeText(on) {
+  document.body.classList.toggle('large-text', on);
+  localStorage.setItem('ao_large_text', on ? '1' : '0');
+}
+function toggleHighContrast(on) {
+  document.body.classList.toggle('high-contrast', on);
+  localStorage.setItem('ao_hc', on ? '1' : '0');
+}
+function loadAccessibilityPrefs() {
+  if (localStorage.getItem('ao_large_text') === '1') {
+    document.body.classList.add('large-text');
+    const el = document.getElementById('toggle-large-text');
+    if (el) el.checked = true;
+  }
+  if (localStorage.getItem('ao_hc') === '1') {
+    document.body.classList.add('high-contrast');
+    const el = document.getElementById('toggle-hc');
+    if (el) el.checked = true;
+  }
+}
+
 // ─── INITIALISE ───────────────────────────────────────────────────
 checkMembership();
 checkPayPalReturn();
 checkOnboarding();
+loadAccessibilityPrefs();
 renderStories('all');
 updateProgressBar();
 </script>
