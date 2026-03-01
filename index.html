@@ -2496,6 +2496,28 @@ body.kid-mode .kid-mode-banner { display: block; }
       <p style="font-size:0.8rem;color:#7a6040;margin-top:0.3rem">Bigger text, brighter colours, child-friendly view</p>
     </div>
     <hr style="border-color:#3a2a18;margin:1rem 0">
+
+    <!-- ElevenLabs API Key -->
+    <div style="margin-bottom:1.2rem">
+      <label style="display:block;color:var(--parchment);font-size:0.9rem;margin-bottom:0.5rem">
+        🎧 ElevenLabs API Key <span style="font-size:0.72rem;color:#7a6040">(for audio narration)</span>
+      </label>
+      <div style="display:flex;gap:0.4rem;align-items:center">
+        <input
+          type="password"
+          id="elevenlabs-key-input"
+          placeholder="Paste your key here…"
+          style="flex:1;padding:0.5rem 0.7rem;background:#2a1a08;border:1px solid #3a2a18;border-radius:6px;color:var(--parchment);font-family:'Crimson Pro',serif;font-size:0.95rem;outline:none;min-height:40px"
+          oninput="previewApiKey(this.value)"
+        >
+        <button onclick="saveApiKey()" style="background:var(--gold);color:white;border:none;padding:0.5rem 0.9rem;border-radius:6px;font-family:'Crimson Pro',serif;cursor:pointer;white-space:nowrap;min-height:40px;font-size:0.9rem">Save</button>
+      </div>
+      <div id="api-key-status" style="font-size:0.78rem;margin-top:0.35rem;color:#7a6040">
+        Get a free key at <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold)">elevenlabs.io</a> — 10,000 chars/month free
+      </div>
+    </div>
+
+    <hr style="border-color:#3a2a18;margin:1rem 0">
     <div style="margin-bottom:1rem">
       <p style="color:var(--parchment-dark);font-size:0.9rem;margin-bottom:0.5rem">📊 Your progress</p>
       <p style="color:#7a6040;font-size:0.85rem">Stories completed: <strong style="color:var(--gold)" id="settings-count">—</strong></p>
@@ -3408,7 +3430,8 @@ function setNarration(mode) {
     stopBtn.style.display = 'inline-flex';
     if (speedWrap) speedWrap.style.display = 'flex';
     // Show setup nudge if no key configured
-    if (!ELEVENLABS_API_KEY) {
+    const activeKey = window._elKey || ELEVENLABS_API_KEY;
+  if (!activeKey) {
       const bar = document.querySelector('.modal-narration-bar');
       if (bar && !document.getElementById('elevenlabs-nudge')) {
         const nudge = document.createElement('div');
@@ -3435,7 +3458,7 @@ function setNarration(mode) {
 //   "Aria"   (el2KSgUhBFqBOAFkUMeY) - warm, storytelling female
 //   "Charlie" (IKne3meq5aSn9XLyUdCD) - friendly Australian male
 // Free API key from: elevenlabs.io — add yours below
-const ELEVENLABS_API_KEY = ''; // ← PASTE YOUR FREE ELEVENLABS KEY HERE
+const ELEVENLABS_API_KEY = ''; // Runtime key stored in window._elKey (set via Settings)
 const ELEVENLABS_VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // "Bella" - warm, gentle
 
 let audioPlayer = null;
@@ -3472,7 +3495,8 @@ async function startNarration() {
   // Truncate to ~2500 chars for free tier (≈4 min of audio)
   const readText = text.slice(0, 2500) + (text.length > 2500 ? '...' : '');
 
-  if (!ELEVENLABS_API_KEY) {
+  const activeKey = window._elKey || ELEVENLABS_API_KEY;
+  if (!activeKey) {
     // Graceful fallback with clear message
     showToast('🎧 Add your free ElevenLabs key to enable narration', 4000);
     updatePlayBtn('▶ Play');
@@ -3488,7 +3512,7 @@ async function startNarration() {
       {
         method: 'POST',
         headers: {
-          'xi-api-key': ELEVENLABS_API_KEY,
+          'xi-api-key': activeKey,
           'Content-Type': 'application/json',
           'Accept': 'audio/mpeg'
         },
@@ -4083,6 +4107,45 @@ function openNextStory() {
   if (next) openStory(next.id);
 }
 
+// ─── ELEVENLABS KEY MANAGEMENT ────────────────────────────────────
+function saveApiKey() {
+  const val = document.getElementById('elevenlabs-key-input')?.value?.trim() || '';
+  // Update the runtime constant
+  window._elKey = val;
+  localStorage.setItem('ao_el_key', val);
+  updateApiKeyStatus(val);
+  if (val) {
+    showToast('🎧 Audio key saved! Tap Listen to Story to try it.', 3000);
+  } else {
+    showToast('API key cleared.');
+  }
+}
+
+function previewApiKey(val) {
+  updateApiKeyStatus(val.trim());
+}
+
+function updateApiKeyStatus(val) {
+  const el = document.getElementById('api-key-status');
+  if (!el) return;
+  if (!val) {
+    el.innerHTML = 'Get a free key at <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold)">elevenlabs.io</a> — 10,000 chars/month free';
+    el.style.color = '#7a6040';
+  } else if (val.length < 20) {
+    el.textContent = '⚠️ Key looks too short — double-check it';
+    el.style.color = 'var(--rust)';
+  } else {
+    el.textContent = '✅ Key saved — audio narration is enabled';
+    el.style.color = 'var(--forest)';
+  }
+}
+
+// Load saved key on startup
+function loadSavedApiKey() {
+  const saved = localStorage.getItem('ao_el_key');
+  if (saved) window._elKey = saved;
+}
+
 // ─── ACCESSIBILITY SETTINGS ───────────────────────────────────────
 function openSettings() {
   document.getElementById('settings-overlay').classList.add('open');
@@ -4099,6 +4162,13 @@ function openSettings() {
   // Sync kid mode checkbox
   const kmCheck = document.getElementById('toggle-kid-mode-settings');
   if (kmCheck) kmCheck.checked = kidMode;
+  // Show current API key (masked)
+  const keyInput = document.getElementById('elevenlabs-key-input');
+  if (keyInput) {
+    const saved = localStorage.getItem('ao_el_key') || '';
+    keyInput.value = saved;
+    updateApiKeyStatus(saved);
+  }
 }
 function closeSettings() {
   document.getElementById('settings-overlay').classList.remove('open');
@@ -4162,6 +4232,7 @@ checkMembership();
 checkPayPalReturn();
 checkOnboarding();
 loadAccessibilityPrefs();
+loadSavedApiKey();
 if (localStorage.getItem('ao_kid_mode') === '1') applyKidMode();
 renderStories('all');
 updateProgressBar();
