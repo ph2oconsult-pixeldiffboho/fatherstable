@@ -1250,6 +1250,132 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
   height: 60px;
 }
 
+
+/* ─── ONBOARDING CHECKLIST / STEPS ─── */
+.onboarding-checklist {
+  display: flex; justify-content: center; gap: 0.8rem;
+  flex-wrap: wrap; margin: 1rem 0 1.2rem;
+}
+.ob-check {
+  background: rgba(184,137,42,0.12); border: 1px solid rgba(184,137,42,0.3);
+  border-radius: 20px; padding: 0.35rem 0.9rem;
+  font-size: 0.9rem; color: var(--parchment-dark);
+}
+.ob-steps-list { text-align: left; margin: 0.8rem 0 1.2rem; }
+.ob-step-row {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: var(--parchment-dark); font-size: 0.95rem; line-height: 1.4;
+}
+.ob-step-row:last-child { border-bottom: none; }
+.ob-step-num {
+  background: var(--gold); color: white;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: bold; flex-shrink: 0; margin-top: 1px;
+}
+.ob-free-list {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.4rem; margin: 0.8rem 0 1.2rem; text-align: left;
+}
+.ob-free-item {
+  background: rgba(184,137,42,0.08); border: 1px solid rgba(184,137,42,0.2);
+  border-radius: var(--radius); padding: 0.4rem 0.7rem;
+  font-size: 0.82rem; color: var(--parchment-dark);
+}
+
+/* ─── PRICING VALUE BULLETS ─── */
+.pricing-value-bullets {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.4rem; margin-bottom: 1.2rem;
+}
+.pvb-item {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.82rem; color: var(--parchment-dark);
+  background: rgba(255,255,255,0.05); border-radius: var(--radius);
+  padding: 0.4rem 0.6rem;
+}
+.pvb-item span { line-height: 1.3; }
+@media (max-width: 400px) { .pricing-value-bullets { grid-template-columns: 1fr; } }
+
+/* ─── KID MODE ─── */
+body.kid-mode {
+  --ink: #1a1a2e;
+  --parchment: #fff9f0;
+  --parchment-dark: #ffe8cc;
+  --gold: #e8a020;
+  --gold-light: #f0c060;
+  --rust: #e05030;
+  --forest: #2a7a3a;
+  --cream: #fffdf8;
+  font-size: 20px;
+}
+body.kid-mode .hero { background: linear-gradient(160deg, #1a1a4a 0%, #2a2a6a 60%, #4a2a6a 100%); }
+body.kid-mode .story-card { border-top-width: 6px; border-radius: 16px; }
+body.kid-mode .story-card h3 { font-size: 1.3rem; }
+body.kid-mode .btn-card-read { font-size: 1.05rem; padding: 0.6rem 1.3rem; border-radius: 24px; }
+body.kid-mode .nav { background: #1a1a3a; }
+body.kid-mode .modal { border-radius: 20px 20px 0 0; }
+body.kid-mode .story-content { font-size: 1.3rem; line-height: 2; }
+body.kid-mode .key-verse-box { font-size: 1.2rem; }
+body.kid-mode .filter-btn { border-radius: 24px; font-size: 1rem; }
+/* Kid mode kid-friendly card colours */
+body.kid-mode .story-card:nth-child(3n+1) { border-top-color: #e05030; }
+body.kid-mode .story-card:nth-child(3n+2) { border-top-color: #2a7a3a; }
+body.kid-mode .story-card:nth-child(3n+3) { border-top-color: #6a3aaa; }
+body.kid-mode .stories-grid { gap: 1.5rem; }
+
+/* Kid mode banner */
+.kid-mode-banner {
+  display: none;
+  background: linear-gradient(90deg, #6a3aaa, #e05030, #e8a020);
+  color: white; text-align: center;
+  padding: 0.4rem 1rem; font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  animation: rainbow 3s linear infinite;
+}
+body.kid-mode .kid-mode-banner { display: block; }
+@keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Kid mode toggle active state */
+#kid-mode-btn.active {
+  border-color: var(--gold) !important;
+  color: var(--gold) !important;
+  background: rgba(184,137,42,0.1) !important;
+}
+#mnav-kidmode.active { color: var(--gold) !important; }
+
+/* ─── CHILD PROGRESS STARS ─── */
+.child-progress-row {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.7rem; flex-wrap: wrap;
+}
+.star-badge {
+  display: inline-flex; align-items: center; gap: 0.2rem;
+  background: var(--gold); color: white;
+  border-radius: 20px; padding: 0.2rem 0.6rem;
+  font-size: 0.8rem; font-weight: 700;
+}
+.progress-stars {
+  display: flex; gap: 0.15rem;
+}
+.progress-star {
+  font-size: 1rem; opacity: 0.25; transition: opacity 0.3s;
+}
+.progress-star.earned { opacity: 1; }
+
+/* ─── SECTION STORY COUNT ─── */
+.filter-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(184,137,42,0.15); color: var(--gold);
+  font-size: 0.7rem; font-weight: 700;
+  width: 18px; height: 18px; border-radius: 50%;
+  margin-left: 0.3rem;
+}
+
 </style>
 
 </head>
@@ -1258,6 +1384,11 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
 <!-- MEMBER BAR -->
 <div class="member-bar" id="member-bar">
   ✝ Welcome back! You have <strong>full access</strong> to The Father's Table. &nbsp;|&nbsp; <a onclick="signOut()">Sign out</a>
+</div>
+
+<!-- KID MODE BANNER -->
+<div class="kid-mode-banner" id="kid-mode-banner">
+  🧒 Kid Mode is ON — bigger text, brighter colours, child-friendly view &nbsp;·&nbsp; <span style="cursor:pointer;text-decoration:underline" onclick="toggleKidMode()">Turn off</span>
 </div>
 
 <!-- PWA INSTALL BANNER -->
@@ -1316,7 +1447,8 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
     <div class="nav-tab" onclick="showPage('curriculum')">📅 Curriculum</div>
     <div class="nav-tab" onclick="showPage('workbooks')">🖨 Workbooks</div>
     <div class="nav-tab" onclick="showPage('pricing')" style="color:var(--gold-light)">⭐ Full Access</div>
-  <button onclick="openSettings()" style="background:none;border:none;color:#7a6040;cursor:pointer;font-size:1.2rem;padding:0.5rem;min-width:40px;min-height:40px" title="Settings" aria-label="Settings">⚙️</button>
+  <button onclick="toggleKidMode()" id="kid-mode-btn" style="background:none;border:2px solid transparent;color:#7a6040;cursor:pointer;font-size:0.8rem;padding:0.3rem 0.7rem;min-height:36px;border-radius:20px;font-family:'Crimson Pro',serif;letter-spacing:0.03em;transition:all 0.2s" title="Kid Mode">🧒 Kid Mode</button>
+<button onclick="openSettings()" style="background:none;border:none;color:#7a6040;cursor:pointer;font-size:1.2rem;padding:0.5rem;min-width:40px;min-height:40px" title="Settings" aria-label="Settings">⚙️</button>
   </div>
 </nav>
 
@@ -1324,27 +1456,45 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
 <div class="onboarding-overlay" id="onboarding-overlay">
   <div class="onboarding-box">
     <div class="onboarding-step active" id="ob-step-1">
-      <div class="onboarding-icon">📖</div>
-      <h2>Welcome to The Father's Table</h2>
-      <p>A place for fathers to sit down with their children and open God's Word together. Simple stories. Real conversations. Lasting faith.</p>
+      <div class="onboarding-icon">👋</div>
+      <h2>Welcome, Dad.</h2>
+      <p>The Father's Table helps you sit down with your child and open God's Word together — in just <strong style="color:var(--gold)">5 minutes a night.</strong> Simple. Warm. Unforgettable.</p>
+      <div class="onboarding-checklist">
+        <div class="ob-check">✅ Pick a story</div>
+        <div class="ob-check">✅ Read together</div>
+        <div class="ob-check">✅ Talk & pray</div>
+      </div>
       <div class="onboarding-dots"><div class="onboarding-dot active"></div><div class="onboarding-dot"></div><div class="onboarding-dot"></div></div>
-      <button class="btn-onboard" onclick="nextOnboardStep(2)">Let's Begin →</button>
+      <button class="btn-onboard" onclick="nextOnboardStep(2)">That sounds good →</button>
       <button class="btn-onboard-skip" onclick="closeOnboarding()">Skip intro</button>
     </div>
     <div class="onboarding-step" id="ob-step-2">
-      <div class="onboarding-icon">🕯️</div>
-      <h2>How Story Time Works</h2>
-      <p>Each story takes about <strong style="color:var(--gold)">5–7 minutes</strong> to read aloud. After the story, use the discussion questions to talk together. End with the closing prayer.</p>
+      <div class="onboarding-icon">📖</div>
+      <h2>Here's How It Works</h2>
+      <div class="ob-steps-list">
+        <div class="ob-step-row"><span class="ob-step-num">1</span><span>Open a story card and tap <strong>📖 Read Together</strong></span></div>
+        <div class="ob-step-row"><span class="ob-step-num">2</span><span>Read the story aloud — or tap <strong>🎧 Listen</strong></span></div>
+        <div class="ob-step-row"><span class="ob-step-num">3</span><span>Ask the discussion questions together</span></div>
+        <div class="ob-step-row"><span class="ob-step-num">4</span><span>Close with the short prayer</span></div>
+      </div>
       <div class="onboarding-dots"><div class="onboarding-dot"></div><div class="onboarding-dot active"></div><div class="onboarding-dot"></div></div>
-      <button class="btn-onboard" onclick="nextOnboardStep(3)">That sounds great →</button>
+      <button class="btn-onboard" onclick="nextOnboardStep(3)">Got it! →</button>
       <button class="btn-onboard-skip" onclick="closeOnboarding()">Skip intro</button>
     </div>
     <div class="onboarding-step" id="ob-step-3">
-      <div class="onboarding-icon">🌱</div>
-      <h2>Your First 6 Stories Are Free</h2>
-      <p>Start with the Creation & Identity stories. Tap any story card to begin. You can unlock all 40+ stories any time with Full Access.</p>
+      <div class="onboarding-icon">🎁</div>
+      <h2>6 Stories Are Yours — Free</h2>
+      <p>No credit card. No catch. Start with the Creation stories right now — unlock all 40+ any time.</p>
+      <div class="ob-free-list">
+        <div class="ob-free-item">🌍 God Creates the World</div>
+        <div class="ob-free-item">🌿 Adam &amp; Eve in the Garden</div>
+        <div class="ob-free-item">🐘 God Names the Animals</div>
+        <div class="ob-free-item">🍎 The First Mistake</div>
+        <div class="ob-free-item">🌾 Cain &amp; Abel's Offerings</div>
+        <div class="ob-free-item">🚢 Noah Builds the Ark</div>
+      </div>
       <div class="onboarding-dots"><div class="onboarding-dot"></div><div class="onboarding-dot"></div><div class="onboarding-dot active"></div></div>
-      <button class="btn-onboard" onclick="closeOnboarding()">📖 Open the Library</button>
+      <button class="btn-onboard" onclick="closeOnboarding()">📖 Start Your First Story</button>
     </div>
   </div>
 </div>
@@ -1357,6 +1507,15 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
     <h2 id="reward-title">Story Complete!</h2>
     <p id="reward-msg">Well done, Dad. You showed up for your child today.</p>
     <button class="btn-onboard" onclick="closeReward()">✓ Keep Going</button>
+  </div>
+</div>
+
+<!-- GUIDE ME HINT -->
+<div class="guide-me-hint" id="guide-me-hint" style="display:none">
+  <div class="guide-bubble">
+    <span class="guide-arrow">👆</span>
+    <span class="guide-text">Tap any story to begin!</span>
+    <button class="guide-dismiss" onclick="dismissGuide()">✕</button>
   </div>
 </div>
 
@@ -1392,8 +1551,8 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
 
   <!-- Dual CTAs -->
   <div class="hero-cta" style="display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem">
-    <button class="btn-hero-cta" onclick="showPage('stories');scrollTo(0,300)">📖 Read Your First Story — Free</button>
-    <button class="btn-hero-secondary" onclick="showPage('pricing');scrollTo(0,300)">See Full Access Plans</button>
+    <button class="btn-hero-cta" onclick="showPage('stories');scrollTo(0,300)">📖 Start Your First Story — Free</button>
+    <button class="btn-hero-secondary" onclick="showPage('pricing');scrollTo(0,300)">👀 See It in Action</button>
   </div>
 
   <!-- Mini feature highlights -->
@@ -1460,6 +1619,48 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
   </div>
 </div>
 
+
+<!-- HOW IT WORKS -->
+<div class="how-it-works-section" id="how-it-works">
+  <div class="hiw-inner">
+    <h2 class="hiw-title">How Story Time Works</h2>
+    <p class="hiw-sub">Four simple steps. Five minutes. A memory that lasts.</p>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="hiw-step-icon">📖</div>
+        <div class="hiw-step-num">1</div>
+        <h3>Pick a Story</h3>
+        <p>Browse 40+ Bible stories organised by theme and month. Free stories are ready instantly.</p>
+      </div>
+      <div class="hiw-step-arrow">→</div>
+      <div class="hiw-step">
+        <div class="hiw-step-icon">🎧</div>
+        <div class="hiw-step-num">2</div>
+        <h3>Read or Listen</h3>
+        <p>Read aloud together, or tap Listen and let the narration carry the story to your child.</p>
+      </div>
+      <div class="hiw-step-arrow">→</div>
+      <div class="hiw-step">
+        <div class="hiw-step-icon">💬</div>
+        <div class="hiw-step-num">3</div>
+        <h3>Talk Together</h3>
+        <p>Three simple questions prompt a real conversation. No prep needed — they're already written.</p>
+      </div>
+      <div class="hiw-step-arrow">→</div>
+      <div class="hiw-step">
+        <div class="hiw-step-icon">🙏</div>
+        <div class="hiw-step-num">4</div>
+        <h3>Close in Prayer</h3>
+        <p>End with a short prayer written for you. Your child hears you talk to God — that's powerful.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn-hero-cta" onclick="showPage('stories');scrollTo(0,0)">📖 Try Your First Story Now</button>
+      <p style="margin-top:0.7rem;font-size:0.85rem;color:#7a6040">Free · No account needed · Takes 5 minutes</p>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════ STORY LIBRARY PAGE ═══════════════ -->
 <div class="page active" id="page-stories">
 
@@ -1488,10 +1689,10 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
     <div class="start-here-inner">
       <div class="start-here-icon">👋</div>
       <div class="start-here-text">
-        <strong>New here? Start with Story 1</strong>
-        <span>It only takes 5 minutes. Sit with your child and read together.</span>
+        <strong>👋 New here? Start with Story 1</strong>
+        <span>Takes 5 minutes. Just sit down, open it up, and read together.</span>
       </div>
-      <button class="btn-start-here" onclick="openStory(1)">Begin →</button>
+      <button class="btn-start-here" onclick="openStory(1)">📖 Start Your First Story →</button>
     </div>
   </div>
 
@@ -1621,7 +1822,15 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
       <div class="pricing-period" id="pricing-period-label">per month · cancel anytime</div>
 
       <!-- Value highlight -->
-      <div class="pricing-value-note">That's less than a coffee a week for a lifetime of faith conversations.</div>
+      <div class="pricing-value-note">Less than a coffee a week — for a lifetime of faith conversations.</div>
+      <div class="pricing-value-bullets">
+        <div class="pvb-item">🕐 <span>5 min a night is all it takes</span></div>
+        <div class="pvb-item">📅 <span>12-month structured plan included</span></div>
+        <div class="pvb-item">🎨 <span>Kids get printable colouring pages</span></div>
+        <div class="pvb-item">🔄 <span>New stories added every month</span></div>
+        <div class="pvb-item">📵 <span>Works offline — no internet needed</span></div>
+        <div class="pvb-item">👨‍👧 <span>Covers the whole family, not just one child</span></div>
+      </div>
 
       <ul class="pricing-features">
         <li class="pricing-feature"><span class="check">✓</span> <strong>40+ Bible stories</strong> — new ones monthly</li>
@@ -1712,15 +1921,28 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
     </div>
     <div class="modal-narration-bar">
       <span class="narration-label">🎙 How would you like to read?</span>
-      <button class="narration-btn active" id="btn-father-read" onclick="setNarration('father')">👨 I'll Read It</button>
-      <button class="narration-btn" id="btn-ai-narrate" onclick="setNarration('ai')">🔊 Read Aloud</button>
+      <button class="narration-btn active" id="btn-father-read" onclick="setNarration('father')">📖 Read Together</button>
+      <button class="narration-btn" id="btn-ai-narrate" onclick="setNarration('ai')">🎧 Listen to Story</button>
       <button class="narration-btn" id="btn-play-pause" style="display:none" onclick="toggleNarration()">▶ Play</button>
       <button class="narration-btn" id="btn-stop" style="display:none;background:var(--rust);color:white;border-color:var(--rust)" onclick="stopNarration()">■ Stop</button>
+      <div class="narration-speed-wrap" id="narration-speed-wrap" style="display:none">
+        <span style="font-size:0.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em">Speed</span>
+        <div class="speed-btns">
+          <button class="speed-btn" onclick="setSpeed(0.75)" id="speed-075">0.75×</button>
+          <button class="speed-btn active" onclick="setSpeed(0.85)" id="speed-085">Normal</button>
+          <button class="speed-btn" onclick="setSpeed(1.1)" id="speed-110">Fast</button>
+        </div>
+      </div>
     </div>
     <div class="modal-actions">
       <button class="btn btn-gold" onclick="markStoryDone()" id="btn-mark-done">✓ Mark as Read</button>
       <button class="btn btn-secondary" onclick="printCurrentStory()">🖨 Print</button>
-      <button class="btn btn-primary" onclick="openWorkbookForCurrent()">📋 Workbook</button>
+      <button class="btn btn-primary" onclick="openWorkbookForCurrent()">🖨️ Print &amp; Do Activity</button>
+    </div>
+    <!-- Child progress stars (shown in kid mode) -->
+    <div class="modal-body" id="modal-stars-row" style="display:none;padding:0.5rem 1.5rem;background:var(--parchment-dark);border-bottom:1px solid var(--parchment-dark)">
+      <div style="font-size:0.8rem;color:var(--gold);font-weight:700;margin-bottom:0.3rem">⭐ Your stars</div>
+      <div class="progress-stars" id="modal-progress-stars"></div>
     </div>
     <div class="modal-body">
       <div id="modal-story-content" class="story-content">
@@ -1777,11 +1999,19 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
       </label>
       <p style="font-size:0.8rem;color:#7a6040;margin-top:0.3rem">Increases contrast for easier reading</p>
     </div>
+    <div style="margin-bottom:1.2rem">
+      <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;color:var(--parchment)">
+        <span>🧒 Kid Mode</span>
+        <input type="checkbox" id="toggle-kid-mode-settings" onchange="toggleKidMode()" style="width:20px;height:20px;cursor:pointer">
+      </label>
+      <p style="font-size:0.8rem;color:#7a6040;margin-top:0.3rem">Bigger text, brighter colours, child-friendly view</p>
+    </div>
     <hr style="border-color:#3a2a18;margin:1rem 0">
     <div style="margin-bottom:1rem">
       <p style="color:var(--parchment-dark);font-size:0.9rem;margin-bottom:0.5rem">📊 Your progress</p>
       <p style="color:#7a6040;font-size:0.85rem">Stories completed: <strong style="color:var(--gold)" id="settings-count">—</strong></p>
       <p style="color:#7a6040;font-size:0.85rem;margin-top:0.3rem">Current streak: <strong style="color:var(--gold)" id="settings-streak">—</strong> days</p>
+      <div class="progress-stars" id="settings-stars" style="margin-top:0.5rem"></div>
     </div>
     <button class="btn-onboard" onclick="closeSettings()">Done</button>
   </div>
@@ -1801,6 +2031,9 @@ body.high-contrast { --parchment: #ffffff; --parchment-dark: #e0e0e0; --cream: #
     </button>
     <button class="mobile-nav-btn" id="mnav-pricing" onclick="showPage('pricing')" style="color:var(--gold-light)">
       <span class="mnav-icon">⭐</span>Full Access
+    </button>
+    <button class="mobile-nav-btn" id="mnav-kidmode" onclick="toggleKidMode()">
+      <span class="mnav-icon">🧒</span>Kid Mode
     </button>
   </div>
 </nav>
@@ -2378,7 +2611,7 @@ function renderStories(filter) {
     nudge.innerHTML = `
       <h3>🌿 40 more stories are waiting</h3>
       <p>You have 6 free stories. Unlock the full library, printable workbooks, Read Aloud narration and the 12-month curriculum with Full Access.</p>
-      <button class="btn btn-gold" onclick="showPage('pricing')">See Full Access Plans →</button>
+      <button class="btn btn-gold" onclick="showPage('pricing')">👀 See It in Action →</button>
     `;
     grid.insertAdjacentElement('beforebegin', nudge);
   } else if (isMember && nudge) {
@@ -2551,8 +2784,20 @@ function renderStoryContent(text) {
     else if (heading === 'CLOSING PRAYER:') prayerText = body.trim();
   }
 
+  // Format story paragraphs with visual breathing room
+  const storyParas = storyText.trim().split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+  const storyHtml = storyParas.map((p, i) => {
+    // Add a subtle color-block accent every 3 paragraphs to help kids follow along
+    const accent = (i > 0 && i % 3 === 0) ? ' style="border-left:3px solid var(--gold-light);padding-left:0.9rem;margin-left:0.1rem"' : '';
+    return `<p class="story-para"${accent}>${p}</p>`;
+  }).join('');
+
   content.innerHTML = `
-    <div style="font-size:1.05rem;line-height:1.85;margin-bottom:1.5rem">${storyText.trim().replace(/\n\n/g,'</p><p style="margin-top:1rem">').replace(/^/,'<p>').replace(/$/,'</p>')}</div>
+    <div class="story-text-block">${storyHtml}</div>
+
+    <div class="story-section-divider">
+      <span>✦</span>
+    </div>
 
     <div class="key-verse-box">
       ${keyVerse || currentStory.verse}
@@ -2563,16 +2808,24 @@ function renderStoryContent(text) {
       <p>${lessonText}</p>
     </div>` : ''}
 
-    ${questionsText ? `<div class="story-section" style="margin-top:1rem">
-      <div class="story-section-title">💬 Talk About It</div>
-      <div style="white-space:pre-line;line-height:1.8">${questionsText}</div>
+    ${questionsText ? `<div class="story-section" style="margin-top:1rem;border-left-color:var(--rust)">
+      <div class="story-section-title" style="color:var(--rust)">💬 Talk About It</div>
+      <div class="talk-questions">${questionsText.split(/\n/).filter(l=>l.trim()).map(q=>`<div class="talk-q">${q}</div>`).join('')}</div>
     </div>` : ''}
 
-    ${prayerText ? `<div class="story-section" style="margin-top:1rem;border-left-color:var(--forest)">
+    ${prayerText ? `<div class="story-section" style="margin-top:1rem;border-left-color:var(--forest);background:linear-gradient(135deg,#f0f8f0,#e8f4e8)">
       <div class="story-section-title" style="color:var(--forest)">🙏 Closing Prayer</div>
-      <p style="font-family:'IM Fell English',serif;font-style:italic;line-height:1.8">${prayerText}</p>
+      <p style="font-family:'IM Fell English',serif;font-style:italic;line-height:1.9;font-size:1.1rem">${prayerText}</p>
     </div>` : ''}
+
+    <div class="story-complete-cue" id="story-complete-cue">
+      <span>📖</span> You made it to the end! <span class="story-complete-stars">⭐⭐⭐</span>
+      <button class="btn btn-gold" style="margin-left:0.8rem" onclick="markStoryDone()">✓ Mark as Read</button>
+    </div>
   `;
+  // Scroll to top of modal body
+  content.scrollTop = 0;
+  updateModalStars();
 }
 
 async function regenerateStory() {
@@ -3117,6 +3370,19 @@ function openNextStory() {
 // ─── ACCESSIBILITY SETTINGS ───────────────────────────────────────
 function openSettings() {
   document.getElementById('settings-overlay').classList.add('open');
+  // Populate stats
+  const completed = getCompletedStories();
+  const countEl = document.getElementById('settings-count');
+  if (countEl) countEl.textContent = completed.length;
+  const streakEl = document.getElementById('settings-streak');
+  if (streakEl) streakEl.textContent = getStreak();
+  const starsEl = document.getElementById('settings-stars');
+  if (starsEl) starsEl.innerHTML = Array.from({length: 6}, (_, i) =>
+    `<span class="progress-star ${completed.includes(i + 1) ? 'earned' : ''}">⭐</span>`
+  ).join('');
+  // Sync kid mode checkbox
+  const kmCheck = document.getElementById('toggle-kid-mode-settings');
+  if (kmCheck) kmCheck.checked = kidMode;
 }
 function closeSettings() {
   document.getElementById('settings-overlay').classList.remove('open');
@@ -3142,11 +3408,45 @@ function loadAccessibilityPrefs() {
   }
 }
 
+// ─── KID MODE ─────────────────────────────────────────────────────
+let kidMode = localStorage.getItem('ao_kid_mode') === '1';
+
+function toggleKidMode() {
+  kidMode = !kidMode;
+  applyKidMode();
+  localStorage.setItem('ao_kid_mode', kidMode ? '1' : '0');
+  showToast(kidMode ? '🧒 Kid Mode ON — bigger, brighter, friendlier!' : '👨 Kid Mode off');
+}
+
+function applyKidMode() {
+  document.body.classList.toggle('kid-mode', kidMode);
+  const btn = document.getElementById('kid-mode-btn');
+  if (btn) btn.classList.toggle('active', kidMode);
+  const mBtn = document.getElementById('mnav-kidmode');
+  if (mBtn) mBtn.classList.toggle('active', kidMode);
+  // Show stars row in modal when in kid mode
+  const starsRow = document.getElementById('modal-stars-row');
+  if (starsRow) starsRow.style.display = kidMode ? 'block' : 'none';
+  updateModalStars();
+}
+
+function updateModalStars() {
+  if (!kidMode) return;
+  const starsEl = document.getElementById('modal-progress-stars');
+  if (!starsEl) return;
+  const completed = getCompletedStories();
+  const total = Math.min(FREE_STORY_IDS.length, 6);
+  starsEl.innerHTML = Array.from({length: total}, (_, i) =>
+    `<span class="progress-star ${completed.includes(i + 1) ? 'earned' : ''}">⭐</span>`
+  ).join('');
+}
+
 // ─── INITIALISE ───────────────────────────────────────────────────
 checkMembership();
 checkPayPalReturn();
 checkOnboarding();
 loadAccessibilityPrefs();
+if (localStorage.getItem('ao_kid_mode') === '1') applyKidMode();
 renderStories('all');
 updateProgressBar();
 </script>
