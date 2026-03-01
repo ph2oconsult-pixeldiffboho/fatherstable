@@ -921,7 +921,7 @@ body {
 </div>
 
 <!-- PWA INSTALL BANNER -->
-<div class="pwa-banner" id="pwa-banner">
+<div class="pwa-banner" id="pwa-banner" style="display:none">
   <div class="pwa-banner-text">
     <strong>⚓ Add to Home Screen</strong>
     <span>Install The Father's Table as an app — works offline too</span>
@@ -933,7 +933,7 @@ body {
 </div>
 
 <!-- iOS INSTALL TIP -->
-<div class="ios-tip-overlay" id="ios-tip-overlay" onclick="closeIosTip(event)">
+<div class="ios-tip-overlay" id="ios-tip-overlay" onclick="closeIosTip(event)" style="display:none">
   <div class="ios-tip-box" onclick="event.stopPropagation()">
     <h3>📱 Add to Your Home Screen</h3>
     <div class="ios-tip-step">
@@ -1915,8 +1915,8 @@ window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredInstallPrompt = e;
 
-  // Only show if not dismissed before
-  if (!localStorage.getItem('pwa_dismissed')) {
+  // Only show on mobile and if not dismissed before
+  if (isMobile() && !localStorage.getItem('pwa_dismissed')) {
     setTimeout(() => {
       document.getElementById('pwa-banner').classList.add('visible');
     }, 3000);
@@ -1928,12 +1928,16 @@ function isIOS() {
   return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
 }
 
+function isMobile() {
+  return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent) || window.innerWidth <= 768;
+}
+
 function isInStandaloneMode() {
   return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 }
 
 function showIOSTip() {
-  if (!localStorage.getItem('pwa_dismissed')) {
+  if (isMobile() && !localStorage.getItem('pwa_dismissed')) {
     setTimeout(() => {
       document.getElementById('pwa-banner').classList.add('visible');
       document.getElementById('pwa-install-btn').textContent = 'How to Install';
