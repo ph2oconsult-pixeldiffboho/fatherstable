@@ -2605,6 +2605,7 @@ body.kid-mode .kid-mode-banner { display: block; }
       <button class="narration-btn" id="btn-ai-narrate" onclick="setNarration('ai')">🎧 Listen to Story</button>
       <button class="narration-btn" id="btn-play-pause" style="display:none" onclick="toggleNarration()">▶ Play</button>
       <button class="narration-btn" id="btn-stop" style="display:none;background:var(--rust);color:white;border-color:var(--rust)" onclick="stopNarration()">■ Stop</button>
+      <button class="narration-btn" id="btn-restart" style="display:none" onclick="restartNarration()" title="Start from beginning">↩ Restart</button>
       <div class="narration-speed-wrap" id="narration-speed-wrap" style="display:none">
         <span style="font-size:0.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em">Speed</span>
         <div class="speed-btns">
@@ -3789,19 +3790,45 @@ async function startNarration() {
     const url = URL.createObjectURL(blob);
 
     audioPlayer = new Audio();
-    audioPlayer.src = url;
+    audioPlayer.preload = 'auto';
     audioPlayer.playbackRate = currentNarrationSpeed;
 
-    audioPlayer.onended = () => { updatePlayBtn('▶ Play'); narrationLoading = false; };
-    audioPlayer.onerror = () => { updatePlayBtn('▶ Play'); narrationLoading = false;
-      showToast('Playback error — try again'); };
+    // ── Wait for the full audio to buffer before playing ──────────
+    // This guarantees we start from the very first syllable (no cut-off)
+    // and that duration is known before progress tracking begins.
+    updatePlayBtn('⏳ Buffering…', true);
 
-    // play() MUST be called in same tick as user gesture on mobile
+    await new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => resolve(), 8000); // 8s max wait
+      audioPlayer.oncanplaythrough = () => { clearTimeout(timeout); resolve(); };
+      audioPlayer.onerror = (e) => { clearTimeout(timeout); reject(new Error('Audio load failed')); };
+      audioPlayer.src = url; // set src AFTER attaching listeners
+      audioPlayer.load();    // explicitly trigger buffering
+    });
+
+    audioPlayer.onended = () => {
+      updatePlayBtn('▶ Play');
+      narrationLoading = false;
+      stopAudioProgressTracking();
+    };
+    audioPlayer.onerror = () => {
+      updatePlayBtn('▶ Play');
+      narrationLoading = false;
+      showToast('Playback error — try again');
+    };
+
+    // Now play — audio is fully buffered, starts from byte 0
     const playPromise = audioPlayer.play();
     if (playPromise) await playPromise;
 
     updatePlayBtn('⏸ Pause');
     narrationLoading = false;
+
+    // Show restart button
+    const restartBtn = document.getElementById('btn-restart');
+    if (restartBtn) restartBtn.style.display = 'inline-block';
+
+    // Progress tracking starts NOW — duration is guaranteed to be known
     startAudioProgressTracking();
     if (ambientOn) startAmbient();
 
@@ -3811,6 +3838,21 @@ async function startNarration() {
     console.error('TTS:', e.message);
     showToast(e.message || 'Audio failed — check your key in ⚙️ Settings', 5000);
   }
+}
+
+
+function restartNarration() {
+  if (!audioPlayer) { startNarration(); return; }
+  audioPlayer.currentTime = 0;
+  if (audioPlayer.paused) {
+    audioPlayer.play().then(() => {
+      updatePlayBtn('⏸ Pause');
+      startAudioProgressTracking();
+    }).catch(() => startNarration());
+  }
+  // Flash the waveform to give feedback
+  const wf = document.getElementById('audio-waveform');
+  if (wf) { wf.style.opacity = '0.3'; setTimeout(() => wf.style.opacity = '1', 200); }
 }
 
 function toggleNarration() {
@@ -3837,6 +3879,8 @@ function stopNarration() {
   updatePlayBtn('▶ Play');
   stopAudioProgressTracking();
   stopAmbient();
+  const restartBtn = document.getElementById('btn-restart');
+  if (restartBtn) restartBtn.style.display = 'none';
 }
 
 function updatePlayBtn(label, disabled = false) {
