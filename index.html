@@ -1602,6 +1602,27 @@ body.kid-mode .kid-mode-banner { display: block; }
   .hiw-step { min-width: 130px; }
 }
 
+
+/* ─── FREE AUDIO BADGE ─── */
+.free-audio-badge {
+  display: inline-block;
+  background: var(--forest);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 20px;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+  text-transform: uppercase;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(45,74,53,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(45,74,53,0); }
+}
+
 </style>
 
 </head>
@@ -1961,7 +1982,8 @@ body.kid-mode .kid-mode-banner { display: block; }
         <div class="featured-tags">
           <span class="pill">Creation &amp; Identity</span>
           <span class="pill">~6 minutes</span>
-          <span class="pill">Discussion questions included</span>
+          <span class="pill">💬 Discussion questions</span>
+          <span class="pill" style="background:var(--forest);color:white;border-color:var(--forest)">🎧 Free audio included</span>
         </div>
         <button class="btn-card-read" style="margin-top:0.9rem;font-size:1rem;padding:0.65rem 1.4rem" onclick="event.stopPropagation();openStory(1)">📖 Read This Story →</button>
       </div>
@@ -2977,6 +2999,36 @@ async function openStory(id) {
   // Set narration mode back to father read
   setNarration('father');
 
+  // Update Listen button to show free preview badge on story 1
+  const listenBtn = document.getElementById('btn-ai-narrate');
+  if (listenBtn) {
+    if (currentStory.id === 1 && !isMember) {
+      listenBtn.innerHTML = '🎧 Listen to Story <span class="free-audio-badge">FREE</span>';
+      listenBtn.title = 'Free audio preview — try before you buy!';
+    } else if (isMember) {
+      listenBtn.innerHTML = '🎧 Listen to Story';
+      listenBtn.title = '';
+    } else {
+      listenBtn.innerHTML = '🎧 Listen to Story 🔒';
+      listenBtn.title = 'Full Access feature';
+    }
+  }
+
+  // Show free audio tip banner for story 1 non-members
+  const narBar = document.querySelector('.modal-narration-bar');
+  let freeAudioTip = document.getElementById('free-audio-tip');
+  if (freeAudioTip) freeAudioTip.remove();
+  if (currentStory.id === 1 && !isMember) {
+    freeAudioTip = document.createElement('div');
+    freeAudioTip.id = 'free-audio-tip';
+    freeAudioTip.style.cssText = 'width:100%;margin-top:0.5rem;padding:0.5rem 0.7rem;background:rgba(45,74,53,0.15);border:1px solid var(--forest);border-radius:6px;font-size:0.83rem;color:var(--forest);display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;flex-basis:100%';
+    freeAudioTip.innerHTML = [
+      '<span>🎁 <strong>Free audio for Story 1!</strong> Tap 🎧 Listen to hear it read aloud — our gift to you.</span>',
+      '<button onclick="closeModal();showPage(\'pricing\')" style="margin-left:auto;background:var(--forest);color:white;border:none;padding:0.25rem 0.8rem;font-family:\'Crimson Pro\',serif;cursor:pointer;border-radius:4px;font-size:0.82rem;white-space:nowrap">Unlock all audio →</button>'
+    ].join(' ');
+    narBar.appendChild(freeAudioTip);
+  }
+
   // Start micro-lesson timer
   startMicroTimer();
 
@@ -3118,8 +3170,9 @@ async function regenerateStory() {
 
 // ─── NARRATION ────────────────────────────────────────────────────────────────
 function setNarration(mode) {
-  // Gate Read Aloud to members
-  if (mode === 'ai' && !isMember) {
+  // Gate Read Aloud to members — EXCEPT story 1 (free audio preview)
+  const isFreeAudio = currentStory && currentStory.id === 1;
+  if (mode === 'ai' && !isMember && !isFreeAudio) {
     stopNarration();
     document.getElementById('btn-father-read').classList.add('active');
     document.getElementById('btn-ai-narrate').classList.remove('active');
