@@ -1623,6 +1623,79 @@ body.kid-mode .kid-mode-banner { display: block; }
   50% { box-shadow: 0 0 0 5px rgba(45,74,53,0); }
 }
 
+
+/* ─── LEGAL PAGE ─── */
+.legal-section {
+  background: var(--parchment);
+  border: 1px solid var(--parchment-dark);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.legal-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.legal-section p {
+  font-size: 0.92rem;
+  color: #3a2a18;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+.legal-section p:last-child { margin-bottom: 0; }
+.legal-list {
+  margin: 0.5rem 0 0.5rem 1.2rem;
+  padding: 0;
+}
+.legal-list li {
+  font-size: 0.9rem;
+  color: #3a2a18;
+  line-height: 1.7;
+  margin-bottom: 0.3rem;
+}
+
+/* ─── PRINT WATERMARK ─── */
+@media print {
+  .print-watermark { display: flex !important; }
+  .modal-overlay, .nav, .mobile-nav, .pwa-banner,
+  .hero, .trust-bar, .testimonials-strip,
+  .how-it-works-section, .page:not(#print-root) { display: none !important; }
+}
+
+
+/* ─── AUDIO NARRATION ─── */
+.narration-btn.playing {
+  background: var(--forest) !important;
+  color: white !important;
+  border-color: var(--forest) !important;
+}
+#btn-play-pause:disabled {
+  cursor: wait;
+}
+#btn-play-pause:not(:disabled):hover {
+  filter: brightness(1.1);
+}
+.speed-btn {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--parchment-dark);
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.speed-btn.active {
+  background: var(--gold);
+  color: white;
+  border-color: var(--gold);
+}
+.speed-btn:hover:not(.active) {
+  border-color: var(--gold);
+}
+
 </style>
 
 </head>
@@ -1695,6 +1768,7 @@ body.kid-mode .kid-mode-banner { display: block; }
     <div class="nav-tab" onclick="showPage('pricing')" style="color:var(--gold-light)">⭐ Full Access</div>
     <div class="nav-tab" onclick="showPage('workbooks')">🖨 Workbooks</div>
   <button onclick="toggleKidMode()" id="kid-mode-btn" style="background:none;border:2px solid transparent;color:#7a6040;cursor:pointer;font-size:0.8rem;padding:0.3rem 0.7rem;min-height:36px;border-radius:20px;font-family:'Crimson Pro',serif;letter-spacing:0.03em;transition:all 0.2s" title="Kid Mode">🧒 Kid Mode</button>
+<button onclick="showPage('legal')" style="background:none;border:none;color:#7a6040;cursor:pointer;font-size:0.72rem;padding:0.3rem 0.5rem;min-height:36px;letter-spacing:0.04em;font-family:'Crimson Pro',serif" title="Terms of Service">📜 Legal</button>
 <button onclick="openSettings()" style="background:none;border:none;color:#7a6040;cursor:pointer;font-size:1.2rem;padding:0.5rem;min-width:40px;min-height:40px" title="Settings" aria-label="Settings">⚙️</button>
   </div>
 </nav>
@@ -2205,6 +2279,117 @@ body.kid-mode .kid-mode-banner { display: block; }
 
 </div>
 
+
+<!-- ═══════════════ LEGAL PAGE ═══════════════ -->
+<div class="page" id="page-legal">
+  <div style="max-width:760px;margin:0 auto;padding:2rem 0">
+
+    <!-- Terms of Service -->
+    <h2 class="section-title" style="margin-top:1rem">📜 Terms of Service</h2>
+    <p class="section-subtitle">Anchor &amp; Oak — The Father's Table · Last updated January 2026</p>
+
+    <div class="legal-section">
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing or using The Father's Table ("the Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Service. These Terms apply to all users, including free and paid subscribers.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>2. Licence Grant — Personal &amp; Family Use</h3>
+      <p>Subject to these Terms, Anchor &amp; Oak grants you a <strong>limited, non-exclusive, non-transferable, revocable licence</strong> to access and use the Service for personal, non-commercial, family use only.</p>
+      <p>This licence permits you to:</p>
+      <ul class="legal-list">
+        <li>Read, listen to and interact with Bible stories within the app</li>
+        <li>Print workbooks and activity pages <strong>for your own household only</strong></li>
+        <li>Use the service with your own children and immediate family members</li>
+      </ul>
+    </div>
+
+    <div class="legal-section" style="border-left-color:var(--rust)">
+      <h3>3. Prohibited Uses — What You May Not Do</h3>
+      <p>You expressly agree that you will <strong>not</strong>:</p>
+      <ul class="legal-list">
+        <li>Reproduce, redistribute, resell or share any content, stories, workbooks or printables for commercial purposes</li>
+        <li>Share login credentials or subscription access with people outside your immediate household</li>
+        <li>Upload, publish or distribute any content from this Service to third-party platforms (social media, file sharing, etc.) without prior written permission</li>
+        <li>Scrape, copy or extract stories, prompts or activities for use in other products or services</li>
+        <li>Use AI tools to repurpose or derive new content from the Service's materials</li>
+        <li>Claim authorship of any content generated through or contained within the Service</li>
+      </ul>
+      <p style="margin-top:0.8rem"><strong>Church and group use requires a separate Church Licence</strong> — see Section 8 below.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>4. Intellectual Property</h3>
+      <p>All content within The Father's Table — including but not limited to Bible story texts, discussion questions, prayers, workbook designs, illustrations, curriculum structure, and brand elements — is the exclusive intellectual property of Anchor &amp; Oak and is protected by Australian and international copyright law.</p>
+      <p>© 2026 Anchor &amp; Oak. All rights reserved.</p>
+      <p>The name "Anchor &amp; Oak", "The Father's Table" and associated logos are trademarks of Anchor &amp; Oak. Unauthorised use is prohibited.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>5. Subscriptions &amp; Payment</h3>
+      <p>Paid subscriptions are processed securely through PayPal. By subscribing, you authorise recurring billing at the selected plan rate until you cancel. You may cancel at any time via your PayPal account — your access continues until the end of the current billing period. No partial refunds are provided for unused periods, except where required by Australian Consumer Law.</p>
+      <p>Anchor &amp; Oak reserves the right to change pricing with 30 days' notice to active subscribers.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>6. Content &amp; Faith Basis</h3>
+      <p>The Father's Table is a Christian faith formation resource. All content is grounded in Biblical Scripture and is intended to support families in raising children in the Christian faith. Use of the Service implies acceptance of this faith basis. The Service is not affiliated with any specific denomination.</p>
+      <p>Bible quotations are drawn from the English Standard Version (ESV) unless otherwise noted. ESV text is used in accordance with its free use provisions for non-commercial ministry and personal use.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>7. Disclaimer &amp; Limitation of Liability</h3>
+      <p>The Service is provided "as is" without warranties of any kind. Anchor &amp; Oak does not guarantee uninterrupted access, error-free operation, or that content will meet every family's theological expectations. To the maximum extent permitted by law, Anchor &amp; Oak's liability is limited to the subscription fees paid in the 12 months preceding any claim.</p>
+    </div>
+
+    <div class="legal-section" style="border-left-color:var(--gold);background:linear-gradient(135deg,#fdf8ee,#f5edd8)">
+      <h3>8. 🏛️ Church &amp; Group Licensing</h3>
+      <p>Churches, small groups, Sunday school programmes, and other ministry organisations wishing to use The Father's Table with multiple families require a <strong>Church Licence</strong>.</p>
+      <p>A Church Licence permits:</p>
+      <ul class="legal-list">
+        <li>Distribution of printed workbooks to families within your congregation (up to the licensed family count)</li>
+        <li>Use in structured children's ministry programmes and Sunday school settings</li>
+        <li>Leader resources and bulk curriculum guides (where available)</li>
+        <li>Co-branding of printed materials with your church name (with prior approval)</li>
+      </ul>
+      <p>A Church Licence does <strong>not</strong> permit:</p>
+      <ul class="legal-list">
+        <li>Resale of materials to families outside the licence agreement</li>
+        <li>Reproduction beyond the licensed family count</li>
+        <li>Use across multiple campuses without a multi-campus licence</li>
+      </ul>
+      <div style="margin-top:1rem;padding:1rem;background:var(--ink);border-radius:var(--radius)">
+        <p style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:0.5rem">📩 Enquire About a Church Licence</p>
+        <p style="color:var(--parchment-dark);font-size:0.9rem;margin-bottom:0.8rem">Contact us to discuss pricing for your congregation size. We offer tiered licensing for churches of all sizes — from small groups to large multi-campus ministries.</p>
+        <a href="mailto:hello@anchorandoak.com.au" style="display:inline-block;background:var(--gold);color:white;padding:0.6rem 1.3rem;border-radius:var(--radius);font-family:'Playfair Display',serif;text-decoration:none;font-size:0.95rem">Email hello@anchorandoak.com.au →</a>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h3>9. Privacy &amp; Children's Data</h3>
+      <p>Anchor &amp; Oak is committed to protecting your family's privacy. We do <strong>not</strong> collect data from or about children. The Service does not require children to create accounts, submit personal information, or interact with any data collection mechanism.</p>
+      <p>Parent account information (email, subscription status) is held securely and not shared with third parties except as required to process payments via PayPal. For full details, see our Privacy Policy.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>10. Governing Law</h3>
+      <p>These Terms are governed by the laws of Victoria, Australia. Any disputes will be subject to the exclusive jurisdiction of the courts of Victoria. Nothing in these Terms limits any rights you may have under the Australian Consumer Law.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>11. Contact</h3>
+      <p>Questions about these Terms? Contact us at <a href="mailto:hello@anchorandoak.com.au" style="color:var(--gold)">hello@anchorandoak.com.au</a></p>
+      <p style="margin-top:0.5rem;font-size:0.88rem;color:#7a6040">Anchor &amp; Oak · Victoria, Australia · ABN: [YOUR ABN]</p>
+    </div>
+
+    <!-- Quick nav back -->
+    <div style="text-align:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--parchment-dark)">
+      <button class="btn btn-secondary" onclick="showPage('stories')">← Back to Story Library</button>
+      <button class="btn btn-gold" style="margin-left:0.5rem" onclick="showPage('pricing')">View Plans</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════ STORY MODAL ═══════════════ -->
 <div class="modal-overlay" id="story-modal" onclick="closeModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
@@ -2232,9 +2417,9 @@ body.kid-mode .kid-mode-banner { display: block; }
       <div class="narration-speed-wrap" id="narration-speed-wrap" style="display:none">
         <span style="font-size:0.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em">Speed</span>
         <div class="speed-btns">
-          <button class="speed-btn" onclick="setSpeed(0.75)" id="speed-075">0.75×</button>
-          <button class="speed-btn active" onclick="setSpeed(0.85)" id="speed-085">Normal</button>
-          <button class="speed-btn" onclick="setSpeed(1.1)" id="speed-110">Fast</button>
+          <button class="speed-btn" onclick="setSpeed(0.75)" id="speed-075">🐢 Slow</button>
+          <button class="speed-btn active" onclick="setSpeed(1.0)" id="speed-085">Normal</button>
+          <button class="speed-btn" onclick="setSpeed(1.2)" id="speed-110">🐇 Fast</button>
         </div>
       </div>
     </div>
@@ -2339,12 +2524,15 @@ body.kid-mode .kid-mode-banner { display: block; }
     <button class="mobile-nav-btn" id="mnav-kidmode" onclick="toggleKidMode()">
       <span class="mnav-icon">🧒</span>Kid Mode
     </button>
+    <button class="mobile-nav-btn" id="mnav-legal" onclick="showPage('legal')">
+      <span class="mnav-icon">📜</span>Legal
+    </button>
   </div>
 </nav>
 
 <!-- FOOTER -->
-<footer style="background:var(--ink);color:var(--parchment-dark);text-align:center;padding:2.5rem 2rem;margin-top:3rem;border-top:3px solid var(--gold)">
-  <div style="display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-bottom:0.6rem">
+<footer style="background:var(--ink);color:var(--parchment-dark);text-align:center;padding:2.5rem 2rem 1.5rem;margin-top:3rem;border-top:3px solid var(--gold)">
+  <div style="display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-bottom:0.5rem">
     <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
       <circle cx="16" cy="8" r="3" stroke="#b8892a" stroke-width="1.8" fill="none"/>
       <line x1="16" y1="11" x2="16" y2="26" stroke="#b8892a" stroke-width="1.8"/>
@@ -2353,8 +2541,23 @@ body.kid-mode .kid-mode-banner { display: block; }
     </svg>
     <span style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--parchment);letter-spacing:0.1em">ANCHOR <em style="color:var(--gold);font-style:italic">&</em> OAK</span>
   </div>
-  <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--gold-light);font-size:1rem;letter-spacing:0.08em;margin-bottom:1rem">Deep Roots. Steady Hearts.</p>
-  <p style="font-size:0.85rem;color:#7a6040;max-width:420px;margin:0 auto">"The Father's Table" is a faith formation resource for Christian fathers raising children aged 4–7.</p>
+  <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--gold-light);font-size:1rem;letter-spacing:0.08em;margin-bottom:0.8rem">Deep Roots. Steady Hearts.</p>
+  <p style="font-size:0.85rem;color:#7a6040;max-width:460px;margin:0 auto 1.2rem">"The Father's Table" is a faith formation resource for Christian fathers raising children aged 4–7.</p>
+
+  <!-- Footer links -->
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.2rem;padding-top:1rem;border-top:1px solid #2a1a08">
+    <span onclick="showPage('stories')" style="cursor:pointer;color:#7a6040;font-size:0.82rem;transition:color 0.2s" onmouseover="this.style.color='#b8892a'" onmouseout="this.style.color='#7a6040'">📖 Story Library</span>
+    <span onclick="showPage('pricing')" style="cursor:pointer;color:#7a6040;font-size:0.82rem;transition:color 0.2s" onmouseover="this.style.color='#b8892a'" onmouseout="this.style.color='#7a6040'">⭐ Full Access</span>
+    <span onclick="showPage('legal')" style="cursor:pointer;color:#7a6040;font-size:0.82rem;transition:color 0.2s" onmouseover="this.style.color='#b8892a'" onmouseout="this.style.color='#7a6040'">📜 Terms of Service</span>
+    <span onclick="showPage('legal');setTimeout(()=>document.querySelector('.legal-section:nth-child(9)')?.scrollIntoView({behavior:'smooth'}),200)" style="cursor:pointer;color:#7a6040;font-size:0.82rem;transition:color 0.2s" onmouseover="this.style.color='#b8892a'" onmouseout="this.style.color='#7a6040'">🏛️ Church Licensing</span>
+    <a href="mailto:hello@anchorandoak.com.au" style="color:#7a6040;font-size:0.82rem;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#b8892a'" onmouseout="this.style.color='#7a6040'">✉️ Contact</a>
+  </div>
+
+  <!-- Copyright -->
+  <p style="font-size:0.75rem;color:#3a2a18;letter-spacing:0.04em">
+    © 2026 Anchor &amp; Oak · Victoria, Australia · All rights reserved.<br>
+    <span style="font-size:0.7rem">Content may not be reproduced or redistributed without written permission. Church licensing available.</span>
+  </p>
 </footer>
 
 <script>
@@ -2769,7 +2972,6 @@ Lord, give us faith like Noah — faith that trusts You even when we can't see w
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let currentStory = null;
 let currentNarration = 'father';
-let utterance = null;
 let generatedStories = {};
 let currentWorkbookType = 'all';
 
@@ -3200,60 +3402,190 @@ function setNarration(mode) {
   const playBtn = document.getElementById('btn-play-pause');
   const stopBtn = document.getElementById('btn-stop');
 
+  const speedWrap = document.getElementById('narration-speed-wrap');
   if (mode === 'ai') {
-    playBtn.style.display = 'inline-block';
-    stopBtn.style.display = 'inline-block';
+    playBtn.style.display = 'inline-flex';
+    stopBtn.style.display = 'inline-flex';
+    if (speedWrap) speedWrap.style.display = 'flex';
+    // Show setup nudge if no key configured
+    if (!ELEVENLABS_API_KEY) {
+      const bar = document.querySelector('.modal-narration-bar');
+      if (bar && !document.getElementById('elevenlabs-nudge')) {
+        const nudge = document.createElement('div');
+        nudge.id = 'elevenlabs-nudge';
+        nudge.style.cssText = 'width:100%;margin-top:0.5rem;padding:0.5rem 0.8rem;background:rgba(184,137,42,0.1);border:1px solid rgba(184,137,42,0.3);border-radius:6px;font-size:0.82rem;color:#5a4030;flex-basis:100%;line-height:1.5';
+        nudge.innerHTML = '🎧 <strong>To enable audio narration:</strong> Get a free <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold)">ElevenLabs API key</a> (free tier = 10,000 chars/month) and paste it into the <code>ELEVENLABS_API_KEY</code> variable in the HTML file.';
+        bar.appendChild(nudge);
+      }
+    } else {
+      const nudge = document.getElementById('elevenlabs-nudge');
+      if (nudge) nudge.remove();
+    }
   } else {
     playBtn.style.display = 'none';
     stopBtn.style.display = 'none';
+    if (speedWrap) speedWrap.style.display = 'none';
+    stopNarration();
+  }
+}
+
+// ─── ELEVENLABS TTS ENGINE ────────────────────────────────────────
+// ElevenLabs free tier: 10,000 chars/month, warm natural voices
+// Voice IDs chosen for child-friendly warmth:
+//   "Aria"   (el2KSgUhBFqBOAFkUMeY) - warm, storytelling female
+//   "Charlie" (IKne3meq5aSn9XLyUdCD) - friendly Australian male
+// Free API key from: elevenlabs.io — add yours below
+const ELEVENLABS_API_KEY = ''; // ← PASTE YOUR FREE ELEVENLABS KEY HERE
+const ELEVENLABS_VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // "Bella" - warm, gentle
+
+let audioPlayer = null;
+let audioBlob = null;
+let narratingText = '';
+let narrationLoading = false;
+
+// Extract clean readable text from the modal (story paragraphs only, skip UI chrome)
+function getStoryTextForNarration() {
+  const el = document.getElementById('modal-story-content');
+  if (!el) return '';
+  // Walk text nodes — skip section titles, verse boxes, UI buttons
+  const skip = ['story-section-title', 'key-verse-box', 'story-complete-cue', 'talk-questions'];
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      let p = node.parentElement;
+      while (p && p !== el) {
+        if (skip.some(cls => p.classList?.contains(cls))) return NodeFilter.FILTER_REJECT;
+        p = p.parentElement;
+      }
+      return node.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const parts = [];
+  while (walker.nextNode()) parts.push(walker.currentNode.textContent.trim());
+  return parts.join(' ').replace(/\s+/g, ' ').trim();
+}
+
+async function startNarration() {
+  if (narrationLoading) return;
+  const text = getStoryTextForNarration();
+  if (!text) { showToast('No story text found to read.'); return; }
+
+  // Truncate to ~2500 chars for free tier (≈4 min of audio)
+  const readText = text.slice(0, 2500) + (text.length > 2500 ? '...' : '');
+
+  if (!ELEVENLABS_API_KEY) {
+    // Graceful fallback with clear message
+    showToast('🎧 Add your free ElevenLabs key to enable narration', 4000);
+    updatePlayBtn('▶ Play');
+    return;
+  }
+
+  narrationLoading = true;
+  updatePlayBtn('⏳ Loading audio…', true);
+
+  try {
+    const res = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`,
+      {
+        method: 'POST',
+        headers: {
+          'xi-api-key': ELEVENLABS_API_KEY,
+          'Content-Type': 'application/json',
+          'Accept': 'audio/mpeg'
+        },
+        body: JSON.stringify({
+          text: readText,
+          model_id: 'eleven_turbo_v2_5',   // fastest + best quality on free tier
+          voice_settings: {
+            stability: 0.55,               // 0=expressive, 1=consistent
+            similarity_boost: 0.80,        // voice fidelity
+            style: 0.35,                   // slight storytelling inflection
+            use_speaker_boost: true
+          }
+        })
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail?.message || `ElevenLabs error ${res.status}`);
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    // Clean up old player
+    if (audioPlayer) { audioPlayer.pause(); audioPlayer.src = ''; }
+    audioPlayer = new Audio(url);
+    audioPlayer.playbackRate = currentNarrationSpeed || 1.0;
+
+    audioPlayer.onended = () => {
+      updatePlayBtn('▶ Play');
+      narrationLoading = false;
+    };
+    audioPlayer.onerror = () => {
+      updatePlayBtn('▶ Play');
+      narrationLoading = false;
+      showToast('Audio playback error — please try again');
+    };
+
+    await audioPlayer.play();
+    updatePlayBtn('⏸ Pause');
+    narrationLoading = false;
+
+  } catch (e) {
+    narrationLoading = false;
+    updatePlayBtn('▶ Play');
+    console.error('TTS error:', e);
+    if (e.message.includes('401') || e.message.includes('403')) {
+      showToast('🔑 ElevenLabs API key invalid — check your key', 4000);
+    } else if (e.message.includes('quota') || e.message.includes('429')) {
+      showToast('Monthly audio limit reached — upgrade ElevenLabs or wait until next month', 5000);
+    } else {
+      showToast('Could not load audio — check your internet connection', 4000);
+    }
   }
 }
 
 function toggleNarration() {
-  const btn = document.getElementById('btn-play-pause');
-  if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-    window.speechSynthesis.pause();
-    btn.textContent = '▶ Resume';
-  } else if (window.speechSynthesis.paused) {
-    window.speechSynthesis.resume();
-    btn.textContent = '⏸ Pause';
-  } else {
+  if (!audioPlayer || audioPlayer.ended || audioPlayer.src === '') {
     startNarration();
+    return;
   }
-}
-
-function startNarration() {
-  stopNarration();
-  const content = document.getElementById('modal-story-content');
-  const text = content.innerText;
-  utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 0.85;
-  utterance.pitch = 1.05;
-
-  // Try to pick a pleasant voice
-  const voices = window.speechSynthesis.getVoices();
-  const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Karen') || v.lang === 'en-AU');
-  if (preferred) utterance.voice = preferred;
-
-  utterance.onend = () => {
-    document.getElementById('btn-play-pause').textContent = '▶ Play';
-    document.getElementById('btn-play-pause').classList.remove('playing');
-  };
-
-  window.speechSynthesis.speak(utterance);
-  document.getElementById('btn-play-pause').textContent = '⏸ Pause';
-  document.getElementById('btn-play-pause').classList.add('playing');
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    updatePlayBtn('⏸ Pause');
+  } else {
+    audioPlayer.pause();
+    updatePlayBtn('▶ Resume');
+  }
 }
 
 function stopNarration() {
-  if (window.speechSynthesis) {
-    window.speechSynthesis.cancel();
+  narrationLoading = false;
+  if (audioPlayer) {
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
   }
+  updatePlayBtn('▶ Play');
+}
+
+function updatePlayBtn(label, disabled = false) {
   const btn = document.getElementById('btn-play-pause');
-  if (btn) {
-    btn.textContent = '▶ Play';
-    btn.classList.remove('playing');
-  }
+  if (!btn) return;
+  btn.textContent = label;
+  btn.disabled = disabled;
+  btn.style.opacity = disabled ? '0.6' : '1';
+  btn.classList.toggle('playing', label.includes('Pause'));
+}
+
+let currentNarrationSpeed = 1.0;
+function setSpeed(rate) {
+  currentNarrationSpeed = rate;
+  if (audioPlayer) audioPlayer.playbackRate = rate;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  const map = { 0.75: 'speed-075', 0.85: 'speed-085', 1.1: 'speed-110' };
+  const el = document.getElementById(map[rate]);
+  if (el) el.classList.add('active');
 }
 
 // ─── CLOSE MODAL ──────────────────────────────────────────────────────────────
@@ -3367,13 +3699,64 @@ Return ONLY the HTML content (no DOCTYPE, no body tags, just the inner content).
     });
     const data = await response.json();
     const html = data.content[0].text.replace(/```html|```/g, '').trim();
-    body.innerHTML = `<div style="font-family:'Crimson Pro',serif;">${html}</div>`;
+    const watermark = buildWatermark(story);
+    body.innerHTML = `<div style="font-family:'Crimson Pro',serif;" id="printable-workbook">${html}${watermark}</div>`;
 
   } catch (e) {
     body.innerHTML = `<p style="color:var(--rust);padding:2rem">Unable to generate workbook. Please try again.</p>`;
   }
 }
 
+
+
+// ─── WATERMARKING ─────────────────────────────────────────────────
+function buildWatermark(story) {
+  const year = new Date().getFullYear();
+  return `
+  <div class="print-watermark" style="
+    margin-top: 2.5rem;
+    padding-top: 0.8rem;
+    border-top: 2px solid #b8892a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 0.72rem;
+    color: #7a6040;
+    letter-spacing: 0.04em;
+  ">
+    <span>⚓ <strong style="color:#b8892a">Anchor &amp; Oak — The Father's Table</strong> · anchorandoak.com.au</span>
+    <span>${story ? story.title + ' · Month ' + story.month : ''}</span>
+    <span>© ${year} Anchor &amp; Oak · For personal &amp; family use only · Not for redistribution</span>
+  </div>
+  <div style="
+    font-size:0.65rem;color:#c0a870;text-align:center;
+    margin-top:0.3rem;font-style:italic;
+  ">Church or group use? Email hello@anchorandoak.com.au for licensing information.</div>`;
+}
+
+// Also inject watermark into printed stories
+function printCurrentStory() {
+  if (!currentStory) return;
+  const storyEl = document.getElementById('modal-story-content');
+  const year = new Date().getFullYear();
+  const printWrap = document.getElementById('print-root') || document.createElement('div');
+  printWrap.id = 'print-root';
+  printWrap.innerHTML = `
+    <div style="font-family:'Crimson Pro',Georgia,serif;max-width:680px;margin:0 auto;padding:2rem;color:#1a1209">
+      <div style="text-align:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #b8892a">
+        <p style="font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:#b8892a;margin-bottom:0.3rem">Anchor &amp; Oak — The Father's Table</p>
+        <h1 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin:0">${currentStory.title}</h1>
+        <p style="font-size:0.85rem;color:#7a6040;margin-top:0.3rem">Month ${currentStory.month} · Ages 4–7 · ${currentStory.focus}</p>
+      </div>
+      ${storyEl.innerHTML}
+      ${buildWatermark(currentStory)}
+    </div>`;
+  if (!document.getElementById('print-root')) document.body.appendChild(printWrap);
+  window.print();
+}
 
 // ─── PWA / SERVICE WORKER ────────────────────────────────────────
 let deferredInstallPrompt = null;
@@ -3494,9 +3877,7 @@ window.addEventListener('appinstalled', () => {
 });
 
 // Pre-load voices
-if (window.speechSynthesis) {
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-}
+// ElevenLabs TTS — no preload needed
 
 // ─── GAMIFICATION & PROGRESS ──────────────────────────────────────
 function getCompletedStories() {
