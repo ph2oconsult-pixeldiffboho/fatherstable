@@ -2497,20 +2497,33 @@ body.kid-mode .kid-mode-banner { display: block; }
     </div>
     <hr style="border-color:#3a2a18;margin:1rem 0">
 
-    <!-- ElevenLabs API Key — set in Vercel, not here -->
-    <div style="margin-bottom:1.2rem;padding:0.8rem;background:#2a1a08;border:1px solid #3a2a18;border-radius:8px">
-      <p style="color:var(--gold);font-size:0.88rem;font-weight:700;margin-bottom:0.4rem">🎧 Audio Narration</p>
-      <p style="color:var(--parchment-dark);font-size:0.82rem;line-height:1.5;margin-bottom:0.6rem">
-        The ElevenLabs API key lives securely on your server.<br>
-        To set it up:
-      </p>
-      <ol style="color:var(--parchment-dark);font-size:0.8rem;line-height:1.7;padding-left:1.2rem;margin:0">
-        <li>Get a free key at <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold)">elevenlabs.io</a></li>
-        <li>Go to your <strong style="color:var(--parchment)">Vercel dashboard</strong></li>
-        <li>Settings → Environment Variables</li>
-        <li>Add <code style="background:#1a1209;padding:0.1rem 0.4rem;border-radius:3px">ELEVENLABS_API_KEY</code></li>
-        <li>Redeploy — audio works instantly</li>
-      </ol>
+    <!-- ElevenLabs API Key — paste directly here -->
+    <div style="margin-bottom:1.2rem">
+      <label style="display:block;color:var(--parchment);font-size:0.9rem;margin-bottom:0.4rem">
+        🎧 ElevenLabs API Key
+        <span style="font-size:0.72rem;color:#7a6040;display:block;margin-top:0.1rem">For audio narration — free at elevenlabs.io</span>
+      </label>
+      <input
+        type="password"
+        id="elevenlabs-key-input"
+        placeholder="sk_xxxxxxxxxxxxxxxx…"
+        autocomplete="off"
+        spellcheck="false"
+        style="width:100%;box-sizing:border-box;padding:0.6rem 0.8rem;background:#0f0a04;border:1.5px solid #3a2a18;border-radius:8px;color:var(--parchment);font-family:monospace;font-size:0.88rem;outline:none;margin-bottom:0.4rem;min-height:44px"
+        oninput="previewApiKey(this.value)"
+        onkeydown="if(event.key==='Enter')saveApiKey()"
+      >
+      <div style="display:flex;gap:0.5rem;align-items:center">
+        <button onclick="saveApiKey()" style="flex:1;background:var(--gold);color:white;border:none;padding:0.5rem 1rem;border-radius:8px;font-family:'Crimson Pro',serif;font-size:0.95rem;cursor:pointer;min-height:44px;font-weight:600">
+          💾 Save Key
+        </button>
+        <button onclick="testApiKey()" style="background:#2a1a08;color:var(--gold);border:1.5px solid #3a2a18;padding:0.5rem 0.8rem;border-radius:8px;font-family:'Crimson Pro',serif;font-size:0.88rem;cursor:pointer;min-height:44px" title="Test your key">
+          🔊 Test
+        </button>
+      </div>
+      <div id="api-key-status" style="font-size:0.78rem;margin-top:0.4rem;color:#7a6040;line-height:1.4">
+        Get a free key at <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold)">elevenlabs.io</a> — no credit card, 10,000 chars/month free
+      </div>
     </div>
 
     <hr style="border-color:#3a2a18;margin:1rem 0">
@@ -3486,48 +3499,60 @@ function getStoryTextForNarration() {
 async function startNarration() {
   if (narrationLoading) return;
 
-  // Extract clean story text
+  // Get API key from localStorage (set in ⚙️ Settings)
+  const apiKey = localStorage.getItem('ao_el_key') || '';
+  if (!apiKey) {
+    showToast('🎧 Tap ⚙️ Settings and paste your ElevenLabs key to enable audio', 5000);
+    updatePlayBtn('▶ Play');
+    return;
+  }
+
   const text = getStoryTextForNarration();
   if (!text) {
-    showToast('Story text not loaded yet — please wait a moment and try again.');
+    showToast('Story is still loading — please wait a moment and try again.');
     return;
   }
 
   narrationLoading = true;
-  updatePlayBtn('⏳ Loading…', true);
+  updatePlayBtn('⏳ Generating audio…', true);
 
   try {
-    // Stop any existing audio first
-    if (audioPlayer) {
-      audioPlayer.pause();
-      audioPlayer = null;
-    }
+    if (audioPlayer) { audioPlayer.pause(); audioPlayer = null; }
 
-    const res = await fetch('/api/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        text: text.slice(0, 2500),
-        voiceId: ELEVENLABS_VOICE_ID,
-      })
-    });
+    // Call ElevenLabs directly — they support browser CORS
+    const res = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`,
+      {
+        method: 'POST',
+        headers: {
+          'xi-api-key': apiKey,
+          'Content-Type': 'application/json',
+          'Accept': 'audio/mpeg',
+        },
+        body: JSON.stringify({
+          text: text.slice(0, 2500),
+          model_id: 'eleven_turbo_v2_5',
+          voice_settings: {
+            stability: 0.50,
+            similarity_boost: 0.80,
+            style: 0.30,
+            use_speaker_boost: true,
+          },
+        }),
+      }
+    );
 
     if (!res.ok) {
-      let errMsg = `Server error ${res.status}`;
-      try {
-        const errJson = await res.json();
-        if (errJson.fix) errMsg = '🔑 ' + errJson.fix;
-        else errMsg = errJson.error || errMsg;
-      } catch(e) {}
-      throw new Error(errMsg);
+      if (res.status === 401) throw new Error('❌ Invalid API key — check it in ⚙️ Settings');
+      if (res.status === 429) throw new Error('Monthly free quota reached — upgrade at elevenlabs.io');
+      throw new Error(`ElevenLabs error ${res.status} — check your key in ⚙️ Settings`);
     }
 
     const arrayBuffer = await res.arrayBuffer();
-    if (!arrayBuffer || arrayBuffer.byteLength === 0) {
-      throw new Error('Empty audio response from server');
+    if (!arrayBuffer || arrayBuffer.byteLength < 100) {
+      throw new Error('Empty audio received — please try again');
     }
 
-    // Build blob URL and create Audio element
     const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
     const url = URL.createObjectURL(blob);
 
@@ -3535,30 +3560,13 @@ async function startNarration() {
     audioPlayer.src = url;
     audioPlayer.playbackRate = currentNarrationSpeed;
 
-    // Must resolve play() — mobile requires this
-    audioPlayer.oncanplaythrough = null; // clear any old handler
+    audioPlayer.onended = () => { updatePlayBtn('▶ Play'); narrationLoading = false; };
+    audioPlayer.onerror = () => { updatePlayBtn('▶ Play'); narrationLoading = false;
+      showToast('Playback error — try again'); };
 
-    await new Promise((resolve, reject) => {
-      audioPlayer.oncanplaythrough = resolve;
-      audioPlayer.onerror = (e) => reject(new Error('Audio decode error: ' + (e.message || 'unknown')));
-      // Fallback if canplaythrough never fires (some browsers)
-      setTimeout(resolve, 3000);
-    });
-
-    audioPlayer.onended = () => {
-      updatePlayBtn('▶ Play');
-      narrationLoading = false;
-    };
-    audioPlayer.onerror = () => {
-      updatePlayBtn('▶ Play');
-      narrationLoading = false;
-      showToast('Playback error — try again or check your connection');
-    };
-
+    // play() MUST be called in same tick as user gesture on mobile
     const playPromise = audioPlayer.play();
-    if (playPromise !== undefined) {
-      await playPromise;
-    }
+    if (playPromise) await playPromise;
 
     updatePlayBtn('⏸ Pause');
     narrationLoading = false;
@@ -3566,8 +3574,8 @@ async function startNarration() {
   } catch (e) {
     narrationLoading = false;
     updatePlayBtn('▶ Play');
-    console.error('TTS error:', e.message);
-    showToast(e.message || 'Audio failed — please try again', 5000);
+    console.error('TTS:', e.message);
+    showToast(e.message || 'Audio failed — check your key in ⚙️ Settings', 5000);
   }
 }
 
@@ -4149,6 +4157,29 @@ function loadSavedApiKey() {
 }
 
 // ─── ACCESSIBILITY SETTINGS ───────────────────────────────────────
+async function testApiKey() {
+  const key = document.getElementById('elevenlabs-key-input')?.value?.trim()
+              || localStorage.getItem('ao_el_key') || '';
+  if (!key) { showToast('Paste your key first, then tap Test'); return; }
+  const statusEl = document.getElementById('api-key-status');
+  if (statusEl) { statusEl.textContent = '⏳ Testing key…'; statusEl.style.color = '#7a6040'; }
+  try {
+    // Fetch voices endpoint — lightweight, no quota used
+    const r = await fetch('https://api.elevenlabs.io/v1/voices', {
+      headers: { 'xi-api-key': key }
+    });
+    if (r.ok) {
+      if (statusEl) { statusEl.textContent = '✅ Key is valid — audio is ready!'; statusEl.style.color = 'var(--forest)'; }
+      showToast('✅ Key works! Tap 🎧 Listen to Story to hear it.', 3500);
+    } else {
+      if (statusEl) { statusEl.textContent = '❌ Invalid key — copy it again from elevenlabs.io'; statusEl.style.color = 'var(--rust)'; }
+      showToast('❌ Key rejected — double-check you copied it fully', 4000);
+    }
+  } catch(e) {
+    if (statusEl) { statusEl.textContent = '⚠️ Could not reach ElevenLabs — check your internet'; statusEl.style.color = '#c08030'; }
+  }
+}
+
 function openSettings() {
   document.getElementById('settings-overlay').classList.add('open');
   // Populate stats
